@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+        <Property name="LOG_FILE">logs/fuzulev-automation.log</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY" />
+        </Console>
+
+        <!-- File Appender -->
+        <File name="FileAppender" fileName="${LOG_FILE}">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </File>
+
+        <!-- Rolling File Appender -->
+        <RollingFile name="RollingFileAppender" fileName="${LOG_FILE}" 
+                     filePattern="logs/fuzulev-automation-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+
+        <!-- Test Results Appender -->
+        <File name="TestResultsAppender" fileName="logs/test-results.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%level] %msg%n" />
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY" />
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <!-- Root Logger -->
+        <Root level="INFO">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFileAppender" />
+        </Root>
+
+        <!-- Selenium WebDriver Logger -->
+        <Logger name="org.openqa.selenium" level="WARN" additivity="false">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFileAppender" />
+        </Logger>
+
+        <!-- TestNG Logger -->
+        <Logger name="org.testng" level="INFO" additivity="false">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="TestResultsAppender" />
+        </Logger>
+
+        <!-- ExtentReports Logger -->
+        <Logger name="com.aventstack.extentreports" level="INFO" additivity="false">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFileAppender" />
+        </Logger>
+
+        <!-- Fuzulev Automation Logger -->
+        <Logger name="com.fuzulev.automation" level="INFO" additivity="false">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFileAppender" />
+            <AppenderRef ref="TestResultsAppender" />
+        </Logger>
+
+        <!-- HTTP Client Logger (for API testing) -->
+        <Logger name="org.apache.http" level="WARN" additivity="false">
+            <AppenderRef ref="RollingFileAppender" />
+        </Logger>
+
+        <!-- RestAssured Logger -->
+        <Logger name="io.restassured" level="WARN" additivity="false">
+            <AppenderRef ref="RollingFileAppender" />
+        </Logger>
+    </Loggers>
+</Configuration>

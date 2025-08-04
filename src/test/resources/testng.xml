@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="FuzulevAutomationTestSuite" verbose="1" parallel="methods" thread-count="1">
+    
+    <parameter name="browser" value="chrome"/>
+    <parameter name="environment" value="local"/>
+    
+    <!-- Listeners -->
+    <listeners>
+        <listener class-name="com.fuzulev.automation.utils.ExtentReportListener"/>
+        <listener class-name="com.fuzulev.automation.utils.TestRetryListener"/>
+        <listener class-name="com.fuzulev.automation.utils.ScreenshotListener"/>
+    </listeners>
+    
+    <!-- Smoke Test Suite -->
+    <test name="SmokeTests" enabled="true">
+        <parameter name="testType" value="smoke"/>
+        <classes>
+            <class name="com.fuzulev.automation.functional.HomePageTest"/>
+            <class name="com.fuzulev.automation.functional.NavigationTest"/>
+        </classes>
+    </test>
+    
+    <!-- Functional Test Suite -->
+    <test name="FunctionalTests" enabled="true">
+        <parameter name="testType" value="functional"/>
+        <groups>
+            <run>
+                <include name="functional"/>
+                <include name="critical"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.fuzulev.automation.functional.*"/>
+        </packages>
+    </test>
+    
+    <!-- API Test Suite -->
+    <test name="APITests" enabled="true">
+        <parameter name="testType" value="api"/>
+        <groups>
+            <run>
+                <include name="api"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.fuzulev.automation.api.*"/>
+        </packages>
+    </test>
+    
+    <!-- Mobile Responsive Test Suite -->
+    <test name="MobileResponsiveTests" enabled="true">
+        <parameter name="testType" value="mobile"/>
+        <parameter name="deviceType" value="mobile"/>
+        <groups>
+            <run>
+                <include name="mobile"/>
+                <include name="responsive"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.fuzulev.automation.mobile.*"/>
+        </packages>
+    </test>
+    
+    <!-- Regression Test Suite -->
+    <test name="RegressionTests" enabled="false">
+        <parameter name="testType" value="regression"/>
+        <groups>
+            <run>
+                <include name="regression"/>
+                <include name="functional"/>
+                <include name="api"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.fuzulev.automation.regression.*"/>
+        </packages>
+    </test>
+    
+    <!-- Integration Test Suite -->
+    <test name="IntegrationTests" enabled="false">
+        <parameter name="testType" value="integration"/>
+        <groups>
+            <run>
+                <include name="integration"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.fuzulev.automation.integration.*"/>
+        </packages>
+    </test>
+    
+    <!-- User Acceptance Test Suite -->
+    <test name="UATTests" enabled="false">
+        <parameter name="testType" value="uat"/>
+        <groups>
+            <run>
+                <include name="uat"/>
+                <include name="acceptance"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.fuzulev.automation.uat.*"/>
+        </packages>
+    </test>
+    
+    <!-- Performance Test Suite -->
+    <test name="PerformanceTests" enabled="false">
+        <parameter name="testType" value="performance"/>
+        <groups>
+            <run>
+                <include name="performance"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.fuzulev.automation.performance.*"/>
+        </packages>
+    </test>
+
+</suite>
