@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" type="image/png" href="https://www.fuzulev.com.tr/assets/images/favicon.svg">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="https://www.fuzulev.com.tr/assets/style/desktop/main.css" />
+
+    <link rel="stylesheet" href="https://www.fuzulev.com.tr/assets/style/vendors/fancybox.css" />
+
+    <link rel="stylesheet" href="https://www.fuzulev.com.tr/assets/style/vendors/intlTelInput.min.css" />
+
+        <link rel="stylesheet" href="https://www.fuzulev.com.tr/assets/style/vendors/select2.min.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="https://www.fuzulev.com.tr/assets/style/common.css">
+
+    <link href="https://www.fuzulev.com.tr/assets/flipbook/css/dflip.css" rel="stylesheet" type="text/css"/>
+
+    <link href="https://www.fuzulev.com.tr/assets/flipbook/css/themify-icons.css" rel="stylesheet" type="text/css"/>
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap"
+
+        rel="stylesheet">
+
+
+
+    <title></title>
+
+<meta name="description" content="">
+
+
+
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58061868-4"></script> -->
+
+<script>
+
+ (function (w, d, s, l, i) {
+
+    w[l] = w[l] || [];
+
+    w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+
+    var f = d.getElementsByTagName(s)[0],
+
+      j = d.createElement(s),
+
+      dl = l != "dataLayer" ? "&l=" + l : "";
+
+    j.async = true;
+
+    j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+
+    f.parentNode.insertBefore(j, f);
+
+  })(window, document, "script", "dataLayer", "GTM-WN2XK93");
+
+</script>
+
+</head>
+
+<style>
+
+    .o-header {
+
+        background: #1a4088;
+
+    }
+
+</style>
+
+
+<script  src="https://www.fuzulev.com.tr/assets/scripts/gt4.js?v=1754151472"></script><body>
+    <header class="o-header">
+        <div class="o-header__wrapper">
+            <!-- <div class="o-header__top">
+                <div class="o-container">
+                    <a href="https://www.fuzulev.com.tr/blog" onclick="menuEvent('top', this)" class="o-header__top-item">Blog</a>
+                    <a href="https://www.fuzulev.com.tr/iletisim" onclick="menuEvent('top', this)" class="o-header__top-item">İletişim</a>
+                    <a href="https://www.fuzulev.com.tr/subelerimiz" onclick="menuEvent('top', this)" class="o-header__top-item">Şubeler</a>
+                    <a href="https://www.fuzulev.com.tr/kurumsal" onclick="menuEvent('top', this)" class="o-header__top-item">Kurumsal</a>
+                    
+                    <a href="https://online.fuzulev.com/giris" onclick="menuEvent('top', this)" target="_blank" class="o-header__top-item o-header__top-item--colored">Online İşlemler</a>
+                </div>
+            </div> -->
+            <div class="o-header__bottom">
+                <div class="o-container">
+                    <div class="o-header__bottom-wrapper">
+                        <div class="o-header__logo">
+                            <a href="https://www.fuzulev.com.tr">
+                                <svg width="102" height="34" viewBox="0 0 102 34" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_111_33542)">
+                                        <g>
+                                            <path
+                                                d="M42.8217 8.4523C44.0935 8.4523 45.1086 8.61087 46.0793 9.14172C46.8469 9.55308 47.3808 10.2689 47.7401 11.0055C47.9191 11.3559 47.9659 11.7753 48.0092 12.2005C48.0195 12.3292 48.0035 12.4624 47.9956 12.5819L47.9842 12.6922C47.8952 13.5793 47.2473 14.3733 46.2835 14.3733C45.3196 14.3733 44.5782 13.6092 44.5782 12.6532C44.5782 12.3533 44.6877 12.112 44.8041 11.9178C44.9101 11.7489 45.0356 11.5915 45.1383 11.4111C45.2329 11.2341 45.1839 10.9078 44.7402 10.5976C44.3284 10.3103 43.7376 10.1919 43.2859 10.1919C42.2878 10.1919 41.4723 10.9802 41.4267 11.9741C41.4278 12.0982 41.4358 13.5655 41.4358 14.2297V16.6909H44.5931V18.7132H41.4677V33.9977H35.2467V31.9041H36.9896L36.9599 14.032C36.9599 12.2499 37.5394 10.8216 38.7838 9.86332C39.9792 8.9326 41.324 8.44885 42.8239 8.44885L42.8217 8.4523Z"
+                                                fill="white" />
+                                            <path
+                                                d="M88.6922 32.1075C87.3463 33.5082 85.4848 33.9586 83.5616 33.9586C81.829 33.9586 80.5082 33.5852 79.5797 32.8682C78.617 32.088 78.2178 30.7792 78.2178 29.1304V16.6943H82.6594V28.9649C82.6594 30.423 82.9195 31.2009 83.2297 31.564C83.5491 31.9363 84.0019 32.1661 84.7 32.1661C85.9228 32.1661 86.89 31.6686 87.5698 30.6184C88.2873 29.4946 88.6911 28.1847 88.6911 26.6415V18.7166H86.947V16.7093H93.1692V34.0011H88.6911V32.1087L88.6922 32.1075Z"
+                                                fill="white" />
+                                            <path
+                                                d="M77.1924 32.1305V34H62.7634L70.7181 18.7155H62.7634V16.6932H77.1924L69.0391 32.1305H77.1924Z"
+                                                fill="white" />
+                                            <path d="M95.9432 11.2536H94.1969V9.23132H100.418V34H95.9432V11.2536Z"
+                                                fill="white" />
+                                            <path
+                                                d="M56.6906 32.1075C55.347 33.5082 53.4854 33.9586 51.5635 33.9586C49.8274 33.9586 48.5066 33.5852 47.5792 32.8682C46.6188 32.088 46.2162 30.7792 46.2162 29.1304V16.6943H50.6624V28.9649C50.6624 30.423 50.9236 31.2009 51.2316 31.564C51.5509 31.9363 52.0083 32.1661 52.6995 32.1661C53.9291 32.1661 54.8918 31.6686 55.5762 30.6184C56.2914 29.4946 56.6929 28.1847 56.6929 26.6415V18.7166H54.95V16.6943H61.1676V34.0023H56.6929V32.1098L56.6906 32.1075Z"
+                                                fill="white" />
+                                            <path d="M100.254 31.9788H102V34H95.779V9.23132H100.254V31.9788Z"
+                                                fill="white" />
+                                        </g>
+                                        <path
+                                            d="M31.5693 14.2009L18.3665 0.900845C17.7893 0.319432 17.0228 0 16.2073 0C15.3917 0 14.6241 0.320581 14.0481 0.900845L0.845234 14.2009C0.0114304 15.0409 -0.225821 16.2451 0.224729 17.3436C0.635357 18.3432 1.5125 18.9982 2.55618 19.1073V30.9171C2.55618 32.6131 3.92608 33.9931 5.60966 33.9931H26.8038C28.4873 33.9931 29.8572 32.6131 29.8572 30.9171V19.1073C30.9009 18.9982 31.7781 18.3432 32.1887 17.3436C32.6404 16.2451 32.402 15.042 31.5682 14.2009H31.5693Z"
+                                            fill="#00C1CB" />
+                                        <path
+                                            d="M24.2943 12.7589C24.1426 12.5095 23.9898 12.4383 23.3773 12.4394C21.7599 12.4739 20.1424 12.5072 18.525 12.5417C19.7729 12.0867 21.0219 11.6317 22.2697 11.1755C22.3849 11.1387 22.7796 10.9962 23.0146 10.5895C23.1263 10.3953 23.1628 10.208 23.1754 10.0851C23.172 9.9219 23.1024 9.7978 23.0636 9.75644C22.8229 9.49446 22.0176 9.71737 21.9298 9.73805C19.9793 10.3252 18.03 10.9135 16.0795 11.5007C15.0141 11.3329 13.9477 11.1663 12.8823 10.9985C12.0702 10.2184 11.258 9.43815 10.4471 8.65796C9.35775 9.70818 8.26844 10.7584 7.17914 11.8086C9.07145 12.4923 9.78891 13.3908 10.09 14.0941C10.341 14.6789 10.2634 15.0236 10.6718 15.6947C11.2501 16.6449 11.7029 16.4071 12.5162 17.409C13.1059 18.1375 13.1823 18.6511 14.0366 19.5026C14.34 19.8048 14.5237 19.9277 14.6914 19.8381C14.7917 19.7852 14.9309 19.7002 14.9925 19.5554C15.0404 19.444 15.0621 19.3164 15.0997 19.0774C15.3141 17.7537 14.1769 17.0379 14.2636 15.9796C14.3309 15.1443 15.11 14.3825 16.0236 14.2722C16.935 14.1618 17.5943 14.7938 17.6216 14.8202C17.6741 14.8719 18.2125 15.42 18.2079 16.2071C18.2034 16.9988 17.6456 18.0215 17.4939 18.3156C17.4403 18.4202 17.284 18.6902 17.3536 18.9947C17.3935 19.1716 17.4984 19.2969 17.5703 19.375C17.6342 19.4451 17.6889 19.4658 17.7779 19.4865C18.0517 19.5497 18.5786 19.0855 18.9288 18.6557C19.247 18.2651 19.685 17.7273 19.8539 16.8632C19.9987 16.1255 19.8778 15.5097 19.7786 15.1638C19.7478 15.0512 19.7056 14.9283 19.6485 14.7973C19.5379 14.5456 19.4033 14.348 19.2858 14.2009C20.6306 14.0964 21.9743 13.9918 23.3191 13.8872C23.4046 13.8803 24.0001 13.824 24.2419 13.3725C24.2761 13.3081 24.3092 13.2254 24.3263 13.1208C24.3457 12.9186 24.3206 12.8002 24.2955 12.7589H24.2943Z"
+                                            fill="white" />
+                                        <path
+                                            d="M7.55669 12.9784L5.47504 10.8814L9.9121 6.41162L11.9938 8.50861C12.2755 8.79243 12.2755 9.25204 11.9938 9.53585L8.57528 12.9795C8.29354 13.2633 7.83729 13.2633 7.55555 12.9795L7.55669 12.9784Z"
+                                            fill="#004897" />
+                                        <path
+                                            d="M22.532 24.8192H9.73186C9.1901 24.8192 8.75092 25.2616 8.75092 25.8074V25.8085C8.75092 26.3543 9.1901 26.7967 9.73186 26.7967H22.532C23.0738 26.7967 23.513 26.3543 23.513 25.8085V25.8074C23.513 25.2616 23.0738 24.8192 22.532 24.8192Z"
+                                            fill="#004897" />
+                                        <path
+                                            d="M18.6744 26.8128C18.7714 26.5359 18.8261 26.2382 18.825 25.928C18.8193 24.4722 17.6433 23.2979 16.197 23.3036C14.7506 23.3094 13.5826 24.494 13.5883 25.9498C13.5883 26.2532 13.6442 26.5427 13.7378 26.8128H18.6733H18.6744Z"
+                                            fill="white" />
+                                        <path
+                                            d="M16.7091 16.8989H15.8103C15.7271 16.8989 15.6597 16.9668 15.6597 17.0506V22.0351C15.6597 22.1189 15.7271 22.1868 15.8103 22.1868H16.7091C16.7923 22.1868 16.8597 22.1189 16.8597 22.0351V17.0506C16.8597 16.9668 16.7923 16.8989 16.7091 16.8989Z"
+                                            fill="white" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_111_33542">
+                                            <rect width="102" height="34" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </a>
+                        </div>
+                        <nav class="o-nav">
+                                                                                        <a data-id="108" href="https://www.fuzulev.com.tr/nasil-calisir" class="o-nav__item" onclick="menuEvent('header', this)">Tasarruf Finansman Modeli Nedir?</a>
+                                                                                                                    <a data-id="119" href="https://www.fuzulev.com.tr/odeme-plani" class="o-nav__item" onclick="menuEvent('header', this)">Ürünler Ve Ödeme Planları</a>
+                                                                                                                <div class="o-nav__item sub-menu">
+	                            <span onclick="menuEvent('header', this)">Merak Edilenler</span>
+	                            <ul>
+                                                                    <li><a href="/faizsiz-ev-sahibi-nasil-olunur" onclick="menuEvent('header', this)" data-category="Merak Edilenler">Faizsiz Ev Sahibi Nasıl Olunur?</a></li>
+                                                                    <li><a href="/kredisiz-ev-alma" onclick="menuEvent('header', this)" data-category="Merak Edilenler">Kredisiz Ev Alma</a></li>
+                                                                    <li><a href="/fuzul-avantajlari" onclick="menuEvent('header', this)" data-category="Merak Edilenler">Fuzul Avantajları</a></li>
+                                                                    <li><a href="/pesinatsiz-ev" onclick="menuEvent('header', this)" data-category="Merak Edilenler">Peşinatsız Ev</a></li>
+                                                                    <li><a href="/merak-edilenler" onclick="menuEvent('header', this)" data-category="Merak Edilenler">Sıkça Sorulan Sorular</a></li>
+                                                                </ul>
+                            </div>
+                                                                                                                    <a data-id="111" href="https://www.fuzulev.com.tr/fuzul-aileleri" class="o-nav__item" onclick="menuEvent('header', this)">Fuzul Aileleri</a>
+                                                                                                                    <a data-id="112" href="https://www.fuzulev.com.tr/kampanyalar" class="o-nav__item" onclick="menuEvent('header', this)">Kampanyalar</a>
+                                                                                    <div class="o-nav__item o-nav__item--notification js-search-btn">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="22px" width="22px" xmlns="http://www.w3.org/2000/svg"><path d="M443.5 420.2L336.7 312.4c20.9-26.2 33.5-59.4 33.5-95.5 0-84.5-68.5-153-153.1-153S64 132.5 64 217s68.5 153 153.1 153c36.6 0 70.1-12.8 96.5-34.2l106.1 107.1c3.2 3.4 7.6 5.1 11.9 5.1 4.1 0 8.2-1.5 11.3-4.5 6.6-6.3 6.8-16.7.6-23.3zm-226.4-83.1c-32.1 0-62.3-12.5-85-35.2-22.7-22.7-35.2-52.9-35.2-84.9 0-32.1 12.5-62.3 35.2-84.9 22.7-22.7 52.9-35.2 85-35.2s62.3 12.5 85 35.2c22.7 22.7 35.2 52.9 35.2 84.9 0 32.1-12.5 62.3-35.2 84.9-22.7 22.7-52.9 35.2-85 35.2z"></path></svg>
+                            </div>
+                        </nav>
+
+                         <div class="o-header-actions">
+                                <a href="tel:4446313" class="o-nav__item o-nav__item-phone" onclick="phoneEvent('header',this)">
+                                    <i>
+                                        <svg width="20" height="20" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.22656 8.75003C5.8697 10.0782 6.94366 11.1494 8.27344 11.7891C8.37153 11.8355 8.48002 11.8556 8.58824 11.8474C8.69646 11.8392 8.80067 11.8029 8.89062 11.7422L10.8437 10.4375C10.93 10.379 11.0298 10.3433 11.1336 10.3337C11.2374 10.3242 11.342 10.3411 11.4375 10.3828L15.0938 11.9532C15.2187 12.0052 15.3231 12.0968 15.3909 12.214C15.4586 12.3311 15.486 12.4673 15.4688 12.6016C15.3529 13.5061 14.9114 14.3373 14.2269 14.9398C13.5424 15.5424 12.6619 15.8748 11.75 15.875C8.93207 15.875 6.22956 14.7556 4.23699 12.763C2.24442 10.7705 1.125 8.06795 1.125 5.25003C1.12521 4.33815 1.45767 3.45759 2.06018 2.77312C2.66269 2.08864 3.49395 1.64716 4.39844 1.53128C4.53269 1.51403 4.66888 1.5414 4.78605 1.60916C4.90322 1.67692 4.99487 1.78132 5.04687 1.90628L6.61719 5.57034C6.65802 5.66436 6.67511 5.76698 6.66693 5.86916C6.65876 5.97134 6.62558 6.06994 6.57031 6.15628L5.26562 8.14065C5.20754 8.2304 5.17345 8.33355 5.16661 8.44024C5.15977 8.54693 5.18041 8.65359 5.22656 8.75003V8.75003Z" stroke="#1A4088" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </i>
+                                    <span>444 63 13</span>
+                                </a>
+
+
+                                <div class="o-nav__item sub-menu sub-menu-hamburger">
+
+
+                                    <span class="sub-menu-hamburger-logo" onclick="menuEvent('header', this)">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M3.46447 20.5355C4.92893 22 7.28595 22 12 22C16.714 22 19.0711 22 20.5355 20.5355C22 19.0711 22 16.714 22 12C22 7.28595 22 4.92893 20.5355 3.46447C19.0711 2 16.714 2 12 2C7.28595 2 4.92893 2 3.46447 3.46447C2 4.92893 2 7.28595 2 12C2 16.714 2 19.0711 3.46447 20.5355ZM18.75 16C18.75 16.4142 18.4142 16.75 18 16.75H6C5.58579 16.75 5.25 16.4142 5.25 16C5.25 15.5858 5.58579 15.25 6 15.25H18C18.4142 15.25 18.75 15.5858 18.75 16ZM18 12.75C18.4142 12.75 18.75 12.4142 18.75 12C18.75 11.5858 18.4142 11.25 18 11.25H6C5.58579 11.25 5.25 11.5858 5.25 12C5.25 12.4142 5.58579 12.75 6 12.75H18ZM18.75 8C18.75 8.41421 18.4142 8.75 18 8.75H6C5.58579 8.75 5.25 8.41421 5.25 8C5.25 7.58579 5.58579 7.25 6 7.25H18C18.4142 7.25 18.75 7.58579 18.75 8Z" fill="#fdcb5c"></path> </g></svg>
+                                    </span>
+                                    <ul>
+                                        <li><a href="https://www.fuzulev.com.tr/blog" onclick="menuEvent('top', this)" class="o-header__top-item">Blog</a></li>
+                                        <li><a href="https://www.fuzulev.com.tr/iletisim" onclick="menuEvent('top', this)" class="o-header__top-item">İletişim</a></li>
+                                        <li><a href="https://www.fuzulev.com.tr/subelerimiz" onclick="menuEvent('top', this)" class="o-header__top-item">Şubeler</a></li>
+                                        <li><a href="https://www.fuzulev.com.tr/kurumsal" onclick="menuEvent('top', this)" class="o-header__top-item">Kurumsal</a></li>
+                                        <!--  <li>  </li> -->
+                                        <li>  <a href="https://online.fuzulev.com/giris" onclick="menuEvent('top', this)" target="_blank" class="o-header__top-item o-header__top-item--colored">Online İşlemler</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <style>
+        .search-modal {
+     position: fixed;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100vh;
+     z-index: 50;
+     display: none;
+   }
+
+   .overlay {
+     background-color: #000;
+     opacity: 0.8;
+     position: absolute;
+     width: 100%;
+     height: 100vh;
+     z-index: 1;
+   }
+
+   .search-modal-content {
+     /* position: absolute; */
+     /* z-index: 2; */
+     /* width: 100%; */
+     /* height: 100%; */
+   }
+
+   .search-modal-content .o-search-area {
+     top: 200px
+   }
+
+   .js-search-btn {
+     cursor: pointer;
+   }
+
+   .js-sticky .js-search-btn svg path {
+     stroke: #1a4088;
+   }
+
+   .search-modal.modal-active {
+     display: block;
+   }
+
+
+   /* Sub menu - samet kemerkaya */
+
+   .sub-menu {
+     position: relative;
+     padding: 10px 0px;
+   }
+
+   .sub-menu ul {
+     list-style: none;
+     background: #FFF;
+     position: absolute;
+     width: 280px;
+     z-index: -1;
+     margin: 0;
+     border: 0;
+     -ms-transform: scale(.8);
+     -moz-transform: scale(.8);
+     -o-transform: scale(.8);
+     -webkit-transform: scale(.8);
+     transform: scale(0.8);
+     padding: 15px 20px;
+     transition-delay: 0.2s;
+     opacity: 0;
+     transition: 400ms all;
+     visibility: hidden;
+     top: 40px;
+     left: 0;
+     -moz-box-shadow: 0 0 41px rgba(5, 38, 94, 0.332);
+     -webkit-box-shadow: 0 0 41px rgba(5, 38, 94, 0.332);
+     box-shadow: 0 0 41px rgba(5, 38, 94, 0.332);
+   }
+
+   .sub-menu:hover>ul {
+     z-index: 9;
+     opacity: 1;
+     -ms-transform: scale(1);
+     -moz-transform: scale(1);
+     -o-transform: scale(1);
+     -webkit-transform: scale(1);
+     transform: scale(1);
+     visibility: visible;
+     border-radius: 4px;
+   }
+
+   .sub-menu li a {
+     padding: 5px 10px;
+     position: relative;
+     display: inline-block;
+     color: #000;
+     text-decoration: auto;
+   }
+
+   .menu-item-has-children>A:after {
+     display: block;
+     content: "";
+     width: 0;
+     height: 0;
+     position: absolute;
+     right: -11px;
+     top: 48%;
+     border-left: 5px solid transparent;
+     border-right: 5px solid transparent;
+     border-top: 5px solid #222C57;
+   }
+
+   .o-nav__item {}
+
+   .sub-menu ul:before {
+     content: "";
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14.301' height='8.981' viewBox='0 0 14.301 8.981'%3E%3Cpath id='caret-up-svgrepo-com' d='M6.1,16.981a1.25,1.25,0,0,1-.941-2.073L10.683,8.6a1.75,1.75,0,0,1,2.634,0l5.522,6.311a1.25,1.25,0,0,1-.941,2.073Z' transform='translate(-4.849 -8)' fill='%23fff'/%3E%3C/svg%3E%0A");
+     width: 18px;
+     height: 10px;
+     position: absolute;
+     background-size: cover;
+     z-index: 1;
+     top: -8px;
+     left: 30px;
+   }
+
+   .sub-menu li a:hover {
+     color: #1a4088;
+   }
+    </style>
+
+           <div class="search-modal ">
+        <div class="overlay"></div>
+        <div class="search-modal-content">
+            <div class="o-search-area">
+                <div class="o-container">
+                    <div class="o-search-area__wrapper">
+                        <form id="search" class="o-search-area__form">
+                            <div class="o-search-area__input">
+                                <input type="text" placeholder="Size nasıl yardımcı olabiliriz?" id="js-desktop-search-input" name="q" />
+                                <div class="o-search-area__icon">
+                                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_111_33561)">
+                                            <path
+                                                d="M12.6875 21.875C17.7616 21.875 21.875 17.7616 21.875 12.6875C21.875 7.61338 17.7616 3.5 12.6875 3.5C7.61338 3.5 3.5 7.61338 3.5 12.6875C3.5 17.7616 7.61338 21.875 12.6875 21.875Z"
+                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M19.1844 19.1843L24.5 24.5" stroke="white" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_111_33561">
+                                                <rect width="28" height="28" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+
+                                </div>
+                            </div>
+                            <div class="o-search-area__content">
+                                <div class="o-search-area__list" id="results">
+                                    
+                                </div>
+                                <div class="o-search-area__sss">
+                                    <a href="https://www.fuzulev.com.tr/nasil-calisir">
+                                        <i>
+                                            <img src="https://www.fuzulev.com.tr/assets/images/icons/question-icon.svg"
+                                                alt="Sistem nasıl calısıyor?">
+                                        </i>
+                                        <span>
+                                            Tasarruf Finansman Modeli Nedir?
+                                        </span>
+                                    </a>
+                                    <a href="https://www.fuzulev.com.tr/odeme-plani">
+                                        <i>
+                                            <img src="https://www.fuzulev.com.tr/assets/images/icons/question-icon.svg"
+                                                alt="En az ne kadar ödemem gerek?">
+                                        </i>
+                                        <span>
+                                            En az ne kadar ödemem gerek?
+                                        </span>
+                                    </a>
+                                    <a href="https://www.fuzulev.com.tr/odeme-plani#show-2">
+                                        <i>
+                                            <img src="https://www.fuzulev.com.tr/assets/images/icons/question-icon.svg"
+                                                alt="Otomobil almak istiyorum">
+                                        </i>
+                                        <span>
+                                            Otomobil almak istiyorum
+                                        </span>
+                                    </a>
+                                    <a href="https://www.fuzulev.com.tr/merak-edilenler">
+                                        <i>
+                                            <img src="https://www.fuzulev.com.tr/assets/images/icons/question-icon.svg"
+                                                alt=" Organizasyon ücreti ne nedir?">
+                                        </i>
+                                        <span>
+                                            Organizasyon ücreti ne nedir?
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="o-search-area__links">
+                                    <a href="https://www.fuzulev.com.tr/iletisim">
+                                        <i>
+                                            <img src="https://www.fuzulev.com.tr/assets/images/icons/phone-bold.svg" alt="Bize Ulaşın" />
+                                        </i>
+                                        <span>
+                                            Bize Ulaşın
+                                        </span>
+                                    </a>
+                                    <a href="javascript:;" data-fancybox data-src="#callForm" onclick="formEvent('search')">
+                                        <i>
+                                            <img src="https://www.fuzulev.com.tr/assets/images/icons/document.svg" alt="Bize Ulaşın" />
+                                        </i>
+                                        <span>
+                                            Talep Formu
+                                        </span>
+                                    </a>
+                                    <a href="https://www.fuzulev.com.tr/subelerimiz">
+                                        <i>
+                                            <img src="https://www.fuzulev.com.tr/assets/images/icons/subeler.svg" alt="Şubeler" />
+                                        </i>
+                                        <span>
+                                            Şubeler
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+
+
+    <div class="loading">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            style="margin: auto; background: none; display: block; shape-rendering: auto;" width="200px" height="200px"
+            viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+            <circle cx="50" cy="50" fill="none" stroke="#2fb7c4" stroke-width="5" r="30"
+                stroke-dasharray="141.37166941154067 49.12388980384689">
+                <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s"
+                    values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+            </circle>
+        </svg>
+    </div>
+<section class="subheader">
+        <picture>
+            <source srcset="https://www.fuzulev.com.tr/assets/img/subheader/search.jpg" />
+            <img src="https://www.fuzulev.com.tr/assets/img/subheader/search.jpg" alt="İletişim" />
+        </picture>
+        <div class="wrapper wrapper--subheader">
+            <div class="wrapper__left">
+            </div>
+            <div class="wrapper__content">
+                <div class="subheader__content">
+                    <h1>Hata!</h1>
+                </div>
+                <div class="breadcrumb">
+                    <a href="javascript:;">
+                        Anasayfa
+                    </a>
+                    <a href="javascript:;" class="active">
+                        Hata
+                    </a>
+                </div>
+            </div>
+            <div class="wrapper__right">
+
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="page">
+            <div class="wrapper wrapper--subpage">
+                <div class="wrapper__left wrapper__left--subpage">
+
+                </div>
+                <div class="wrapper__content wrapper__content--subpage">
+                    <div class="page__content page__content--padding-none">
+                        <div class="error-page" style="padding:15%;">
+                            <!--<img src="https://www.fuzulev.com.tr/assets/img/404.png" alt="404" />-->
+                            <h2>Sayfa Bulunamadı…</h2>
+                            <h3>Aradığınız sayfa silinmiş veya taşınmış olabilir.</h3>
+                            <p>
+                                Sayfa adresini kendiniz yazdıysanız yazım hatası yapıp yapmadığınızı kontrol edin. Eğer
+                                bu sayfaya başka bir linke tıklayarak ulaştıysanız, hatayı düzeltmemiz için lütfen bize
+                                haber verin.
+                                Ulaşmak istediğiniz sayfayı bulmak için sayfanın yukarısındaki arama kutusunu
+                                kullanabilirsiniz.
+                            </p>
+                            <a href="https://www.fuzulev.com.tr" class="button button--outline-border">
+                                <span class="button__span">ANASAYFAYA DÖN</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrapper__right wrapper__right--subpage">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+   
+
+<footer class="o-footer">
+
+    <div class="o-footer__bottom">
+        <div class="o-container">
+            <div class="o-footer__nav-wrapper">
+                <nav class="o-footer__nav">
+                    <h3>Tasarruf Finansman Modeli</h3>
+                    <a onclick="menuEvent('footer', this)" data-category="Tasarruf Finansman Modeli" href="https://www.fuzulev.com.tr/nasil-calisir">Tasarruf Finansman Modeli Nedir?</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Tasarruf Finansman Modeli" href="https://www.fuzulev.com.tr/ev-finansmani">Ev Nasıl Alınır?</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Tasarruf Finansman Modeli" href="https://www.fuzulev.com.tr/otomobil-finansmani">Otomobil Nasıl Alınır?</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Tasarruf Finansman Modeli" href="https://www.fuzulev.com.tr/isyeri-finansmani">İşyeri Nasıl Alınır?</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Tasarruf Finansman Modeli" href="https://www.fuzulev.com.tr/motosiklet-finansmani">Motosiklet Nasıl Alınır ?</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Tasarruf Finansman Modeli" href="https://www.fuzulev.com.tr/merak-edilenler">Merak Edilenler</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Tasarruf Finansman Modeli" href="https://www.fuzulev.com.tr/fuzul-aileleri">Fuzul Aileleri</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Tasarruf Finansman Modeli" href="https://www.fuzulev.com.tr/kampanyalar">Kampanyalar</a>
+                </nav>
+                <nav class="o-footer__nav">
+                    <h3>Kurumsal</h3>
+                    <a onclick="menuEvent('footer', this)" data-category="Kurumsal" href="https://www.fuzulev.com.tr/hakkimizda">Biz Kimiz?</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Kurumsal" href="https://www.fuzulev.com.tr/televizyonda-biz">Medya</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Kurumsal" href="https://www.fuzulev.com.tr/acik-pozisyonlar">İnsan Kaynakları</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Kurumsal" href="https://www.fuzulev.com.tr/yatirimci-iliskileri">Yatırımcı İlişkileri</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Kurumsal" href="https://www.fuzulev.com.tr/banka-hesap-bilgileri">Banka Hesap Bilgileri</a>
+                </nav>
+                <nav class="o-footer__nav">
+                    <h3>Bize Ulaşın</h3>
+                    <a onclick="menuEvent('footer', this)" data-category="Bize Ulaşın" href="https://www.fuzulev.com.tr/iletisim">İletişim</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Bize Ulaşın" href="https://www.fuzulev.com.tr/subelerimiz">Şubelerimiz</a>
+                    <a href="javascript:;" data-fancybox data-src="#callForm" onclick="formEvent('footerMenu')">Bilgi Almak İçin</a>
+                    
+                </nav>
+                <nav class="o-footer__nav">
+                    <h3>Bilgi Toplumu Hizmetleri</h3>
+                    <a onclick="menuEvent('footer', this)" data-category="Bilgi Toplumu Hizmetleri" href="https://www.fuzulev.com.tr/kisisel-verileri-koruma"> Kişisel Verileri Koruma</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Bilgi Toplumu Hizmetleri" href="https://www.fuzulev.com.tr/cerez-politikasi">Çerez Politikası</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Bilgi Toplumu Hizmetleri" href="https://www.fuzulev.com.tr/gizlilik-politikasi">Gizlilik Politikası</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Bilgi Toplumu Hizmetleri" href="https://www.fuzulev.com.tr/kampanya/evimizdeyiz-birlikteyiz-sampiyonluk-hedefimiz">Sponsorluklarımız </a>
+                    <a onclick="menuEvent('footer', this)" data-category="Bilgi Toplumu Hizmetleri" href="https://www.fuzulev.com.tr/acik-riza-metni">Açık Rıza Metni</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Bilgi Toplumu Hizmetleri" href="https://www.fuzulev.com.tr/sifre-guvenligi">Şifre Güvenliği</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Bilgi Toplumu Hizmetleri" href="https://www.fuzulev.com.tr/guvenlik-riskleri">Güvenlik Riskleri</a>
+                    <a onclick="menuEvent('footer', this)" data-category="Bilgi Toplumu Hizmetleri" href="https://www.fuzulev.com.tr/veri-saklama-imha">Kişisel Veri Saklama Ve <br> İmha Politikası</a>
+                    <a href="https://www.fuzulev.com.tr/assets/uploads/KVK-FRM-06.pdf" target="_blank">İlgili Kişi Başvuru Formu</a>
+                </nav>
+                <nav class="o-footer__nav o-footer__nav--colored">
+                    
+                    <a onclick="menuEvent('footer', this)" href="https://online.fuzulev.com/giris" target="_blank">Online İşlemler</a>
+                </nav>
+
+            </div>
+
+            <div class="o-footer__actions">
+                <a href="javascript:;" class="c-button c-button--ghost-yellow" data-fancybox data-src="#callForm" onclick="formEvent('footer')">
+                    <span>Bilgi Almak İçin</span>
+                </a>
+                <a href="javascript:;" class="o-footer__up">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_312_33431)">
+                            <path d="M11 18.5625V3.4375" stroke="white" stroke-width="3" stroke-linecap="round"
+                                  stroke-linejoin="round" />
+                            <path d="M4.8125 9.625L11 3.4375L17.1875 9.625" stroke="white" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_312_33431">
+                                <rect width="22" height="22" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="o-footer__top">
+        <div class="o-container">
+            <div class="o-footer__top-wrapper">
+                <div class="o-footer__logo">
+                    <a href="/">
+                        <img src="https://www.fuzulev.com.tr/assets/images/logo.svg" width="102" height="34"  alt="Fuzul" />
+                    </a>
+                </div>
+                <div class="o-footer__text">
+                    <p>
+                        © 2025 Fuzul Tasarruf Finansman A.Ş Tüm hakkı saklıdır.
+                    </p>
+                    <br>
+                    <p>
+                        Nisbetiye Mah. Barbaros Bul. 100 B, 34340 Beşiktaş – İstanbul
+                    </p>
+                </div>
+                <div class="o-footer__links">
+                    <div class="o-footer__phone">
+                        <a href="tel:4446313" onclick="phoneEvent('footer',this)">
+                            <i>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_312_33411)">
+                                        <path opacity="0.2"
+                                              d="M8.67187 11.7C9.44364 13.2938 10.7324 14.5792 12.3281 15.3469C12.4458 15.4026 12.576 15.4268 12.7059 15.4169C12.8358 15.407 12.9608 15.3635 13.0687 15.2907L15.4125 13.725C15.516 13.6548 15.6357 13.6119 15.7603 13.6005C15.8849 13.589 16.0104 13.6093 16.125 13.6594L20.5125 15.5438C20.6625 15.6062 20.7877 15.7162 20.869 15.8568C20.9504 15.9974 20.9832 16.1608 20.9625 16.3219C20.8234 17.4073 20.2937 18.4048 19.4723 19.1278C18.6509 19.8508 17.5943 20.2498 16.5 20.25C13.1185 20.25 9.87548 18.9067 7.48439 16.5156C5.0933 14.1246 3.75 10.8815 3.75 7.50003C3.75025 6.40578 4.1492 5.34911 4.87221 4.52774C5.59522 3.70637 6.59274 3.17659 7.67812 3.03753C7.83922 3.01684 8.00266 3.04967 8.14326 3.13099C8.28386 3.2123 8.39384 3.33758 8.45625 3.48753L10.3406 7.88441C10.3896 7.99723 10.4101 8.12038 10.4003 8.24299C10.3905 8.36561 10.3507 8.48393 10.2844 8.58753L8.71875 10.9688C8.64905 11.0765 8.60814 11.2003 8.59993 11.3283C8.59172 11.4563 8.61649 11.5843 8.67187 11.7Z"
+                                              fill="white" />
+                                        <path
+                                                    d="M8.67187 11.7C9.44364 13.2938 10.7324 14.5792 12.3281 15.3469C12.4458 15.4026 12.576 15.4268 12.7059 15.4169C12.8358 15.407 12.9608 15.3635 13.0687 15.2907L15.4125 13.725C15.516 13.6548 15.6357 13.6119 15.7603 13.6005C15.8849 13.589 16.0104 13.6093 16.125 13.6594L20.5125 15.5438C20.6625 15.6062 20.7877 15.7162 20.869 15.8568C20.9504 15.9974 20.9832 16.1608 20.9625 16.3219C20.8234 17.4073 20.2937 18.4048 19.4723 19.1278C18.6509 19.8508 17.5943 20.2498 16.5 20.25C13.1185 20.25 9.87548 18.9067 7.48439 16.5156C5.0933 14.1246 3.75 10.8815 3.75 7.50003C3.75025 6.40578 4.1492 5.34911 4.87221 4.52774C5.59522 3.70637 6.59274 3.17659 7.67812 3.03753C7.83922 3.01684 8.00266 3.04967 8.14326 3.13099C8.28386 3.2123 8.39384 3.33758 8.45625 3.48753L10.3406 7.88441C10.3896 7.99723 10.4101 8.12038 10.4003 8.24299C10.3905 8.36561 10.3507 8.48393 10.2844 8.58753L8.71875 10.9688C8.64905 11.0765 8.60814 11.2003 8.59993 11.3283C8.59172 11.4563 8.61649 11.5843 8.67187 11.7V11.7Z"
+                                                    stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path
+                                                    d="M14.9437 3.75C16.2159 4.09141 17.3758 4.76142 18.3072 5.69279C19.2386 6.62416 19.9086 7.78412 20.25 9.05625"
+                                                    stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path
+                                                    d="M14.1656 6.64685C14.9308 6.85005 15.6286 7.2519 16.1883 7.81167C16.7481 8.37144 17.1499 9.06924 17.3531 9.83435"
+                                                    stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_312_33411">
+                                            <rect width="24" height="24" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </i>
+                            444 63 13
+                        </a>
+                    </div>
+                    <div class="o-footer__social">
+                        <a onclick="socialEvent('footer', 'facebook')" target="_blank" href="https://www.facebook.com/FuzulEV" rel="nofollow">
+                            <svg width="10" height="19" viewBox="0 0 10 19" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                            d="M7.80083 3.04336H9.52417V0.128361C8.68977 0.0415956 7.85139 -0.00124143 7.0125 2.73754e-05C4.51917 2.73754e-05 2.81417 1.52169 2.81417 4.30836V6.71003H0V9.97336H2.81417V18.3334H6.1875V9.97336H8.9925L9.41416 6.71003H6.1875V4.62919C6.1875 3.66669 6.44417 3.04336 7.80083 3.04336Z"
+                                            fill="#C5D0E2" />
+                            </svg>
+                        </a>
+                        <a onclick="socialEvent('footer', 'twitter')" target="_blank" href="https://twitter.com/Fuzulev" rel="nofollow">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg>
+                        </a>
+                        <a onclick="socialEvent('footer', 'linkedin')" target="_blank" href="https://www.linkedin.com/company/fuzulev/?originalSubdomain=tr" rel="nofollow">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_312_33420)">
+                                    <path
+                                                d="M0 5.625H4.02525V18H0V5.625ZM14.9895 5.77013C14.9468 5.75663 14.9062 5.742 14.8612 5.72962C14.8072 5.7174 14.7528 5.70689 14.6981 5.69813C14.4604 5.64953 14.2185 5.62503 13.9759 5.625C11.6291 5.625 10.1407 7.33163 9.65025 7.99088V5.625H5.625V18H9.65025V11.25C9.65025 11.25 12.6923 7.01325 13.9759 10.125V18H18V9.64912C17.9983 8.76053 17.7019 7.89761 17.157 7.19562C16.6122 6.49363 15.8499 5.99227 14.9895 5.77013Z"
+                                                fill="#C5D0E2" />
+                                    <path
+                                                d="M1.96875 3.9375C3.05606 3.9375 3.9375 3.05606 3.9375 1.96875C3.9375 0.881439 3.05606 0 1.96875 0C0.881439 0 0 0.881439 0 1.96875C0 3.05606 0.881439 3.9375 1.96875 3.9375Z"
+                                                fill="#C5D0E2" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_312_33420">
+                                        <rect width="18" height="18" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
+                        <a onclick="socialEvent('footer', 'instagram')" target="_blank" href="https://www.instagram.com/fuzulev/?hl=en" rel="nofollow">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                            d="M6.00048 9C6.00048 7.34321 7.34321 5.99976 9 5.99976C10.6568 5.99976 12.0002 7.34321 12.0002 9C12.0002 10.6568 10.6568 12.0002 9 12.0002C7.34321 12.0002 6.00048 10.6568 6.00048 9ZM4.37859 9C4.37859 11.5524 6.44758 13.6214 9 13.6214C11.5524 13.6214 13.6214 11.5524 13.6214 9C13.6214 6.44758 11.5524 4.37859 9 4.37859C6.44758 4.37859 4.37859 6.44758 4.37859 9ZM12.7243 4.1954C12.7243 4.79152 13.2078 5.27569 13.8046 5.27569C14.4007 5.27569 14.8849 4.79152 14.8849 4.1954C14.8849 3.59927 14.4015 3.11583 13.8046 3.11583C13.2078 3.11583 12.7243 3.59927 12.7243 4.1954ZM5.36365 16.3258C4.48619 16.2858 4.00929 16.1397 3.69233 16.0161C3.27213 15.8525 2.97262 15.6577 2.65711 15.3429C2.34233 15.0281 2.14677 14.7286 1.98393 14.3084C1.86034 13.9914 1.71422 13.5145 1.67423 12.6371C1.63061 11.6884 1.62189 11.4034 1.62189 9C1.62189 6.59661 1.63134 6.31236 1.67423 5.36292C1.71422 4.48546 1.86107 4.00929 1.98393 3.6916C2.1475 3.27141 2.34233 2.97189 2.65711 2.65638C2.97189 2.3416 3.27141 2.14604 3.69233 1.9832C4.00929 1.85961 4.48619 1.71349 5.36365 1.67351C6.31236 1.62989 6.59733 1.62116 9 1.62116C11.4034 1.62116 11.6876 1.63061 12.6371 1.67351C13.5145 1.71349 13.9907 1.86034 14.3084 1.9832C14.7286 2.14604 15.0281 2.3416 15.3436 2.65638C15.6584 2.97116 15.8532 3.27141 16.0168 3.6916C16.1404 4.00856 16.2865 4.48546 16.3265 5.36292C16.3701 6.31236 16.3788 6.59661 16.3788 9C16.3788 11.4027 16.3701 11.6876 16.3265 12.6371C16.2865 13.5145 16.1397 13.9914 16.0168 14.3084C15.8532 14.7286 15.6584 15.0281 15.3436 15.3429C15.0288 15.6577 14.7286 15.8525 14.3084 16.0161C13.9914 16.1397 13.5145 16.2858 12.6371 16.3258C11.6884 16.3694 11.4034 16.3781 9 16.3781C6.59733 16.3781 6.31236 16.3694 5.36365 16.3258ZM5.2895 0.0545234C4.33134 0.0981422 3.67706 0.250081 3.10493 0.472536C2.51317 0.702262 2.01155 1.0105 1.51066 1.51066C1.0105 2.01082 0.702262 2.51244 0.472536 3.10493C0.250081 3.67706 0.0981422 4.33134 0.0545234 5.2895C0.0101777 6.24911 0 6.5559 0 9C0 11.4441 0.0101777 11.7509 0.0545234 12.7105C0.0981422 13.6687 0.250081 14.3229 0.472536 14.8951C0.702262 15.4868 1.00977 15.9892 1.51066 16.4893C2.01082 16.9895 2.51244 17.297 3.10493 17.5275C3.67779 17.7499 4.33134 17.9019 5.2895 17.9455C6.24984 17.9891 6.5559 18 9 18C11.4448 18 11.7509 17.9898 12.7105 17.9455C13.6687 17.9019 14.3229 17.7499 14.8951 17.5275C15.4868 17.297 15.9884 16.9895 16.4893 16.4893C16.9895 15.9892 17.297 15.4868 17.5275 14.8951C17.7499 14.3229 17.9026 13.6687 17.9455 12.7105C17.9891 11.7502 17.9993 11.4441 17.9993 9C17.9993 6.5559 17.9891 6.24911 17.9455 5.2895C17.9019 4.33134 17.7499 3.67706 17.5275 3.10493C17.297 2.51317 16.9895 2.01155 16.4893 1.51066C15.9892 1.0105 15.4868 0.702262 14.8958 0.472536C14.3229 0.250081 13.6687 0.0974152 12.7112 0.0545234C11.7516 0.0109047 11.4448 0 9.00073 0C6.5559 0 6.24984 0.0101777 5.2895 0.0545234Z"
+                                            fill="#C5D0E2" />
+                            </svg>
+                        </a>
+                        <a onclick="socialEvent('footer', 'youtube')" target="_blank" href="https://www.youtube.com/c/Fuzulev/featured" rel="nofollow">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                            d="M21.0914 8.664C21.1368 7.35193 20.8498 6.04968 20.2573 4.87817C19.8552 4.39747 19.2972 4.07307 18.6806 3.9615C16.13 3.73007 13.5688 3.63521 11.0081 3.67734C8.45668 3.6333 5.90474 3.72509 3.36309 3.95234C2.86059 4.04374 2.39556 4.27944 2.02475 4.63067C1.19975 5.3915 1.10809 6.69317 1.01642 7.79317C0.883422 9.77094 0.883422 11.7554 1.01642 13.7332C1.04294 14.3523 1.13512 14.9668 1.29142 15.5665C1.40195 16.0295 1.62557 16.4578 1.94225 16.8132C2.31558 17.183 2.79144 17.4321 3.30809 17.5282C5.28434 17.7721 7.27562 17.8732 9.26642 17.8307C12.4748 17.8765 15.2889 17.8307 18.6164 17.574C19.1458 17.4838 19.635 17.2344 20.0189 16.859C20.2756 16.6023 20.4672 16.288 20.5781 15.9423C20.9059 14.9364 21.0669 13.8836 21.0548 12.8257C21.0914 12.3123 21.0914 9.214 21.0914 8.664ZM8.93642 13.3757V7.7015L14.3631 10.5523C12.8414 11.3957 10.8339 12.349 8.93642 13.3757Z"
+                                            fill="#C5D0E2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <div class="o-footer__mobile-actions">
+        <a href="javascript:;" class="c-button c-button--yellow">
+            <span>Bize Ulaşın</span>
+        </a>
+    </div>
+</footer>
+
+<form class="o-call-form" id="callForm" action="https://www.fuzulev.com.tr/iletisim-post" method="POST">
+    <div class="o-call-form__head">
+        <h3 class="o-call-form__title">Bilgilerinizi Gönderin <br> Biz Sizi Arayalım</h3>
+    </div>
+    <div class="o-call-form__content">
+        <div class="o-call-form__row">
+            <input type="hidden" name="_token" value="">            <input type="hidden" name="utm_source" class="utm_source" value="" />
+            <input type="hidden" name="utm_medium" class="utm_medium" value="" />
+            <input type="hidden" name="utm_campaign" class="utm_campaign" value="" />
+            <input type="hidden" name="utm_content" class="utm_content" value="" />
+            <input type="hidden" name="utm_term" class="utm_term" value="" />
+            <input type="hidden" name="gclid" class="gclid" value="" />
+            <input type="hidden" name="url" value="https://www.fuzulev.com.tr/assets/assets/fonts/subset-Gilroy-Black.woff2">
+            <input type="text" placeholder="Adınız Soyadınız *" name="callFullName" required="required" />
+        </div>
+        <div class="o-call-form__row">
+            <input type="text" placeholder="Cep Telefon Numaranız *" class="js-int-phone" name="callPhone"
+                   required="required" />
+        </div>
+        <!--<div class="o-call-form__row">
+            <input type="email" placeholder="E-Posta Adresiniz" name="callEmail" required="required" />
+        </div>-->
+        <div class="o-call-form__row o-call-form__row--checkbox">
+            <input type="checkbox" name="callKvkk" required="required">
+            <label for="callKvkk"><a href="https://www.fuzulev.com.tr/acik-riza-metni" target="_blank">Kişisel verilerin korunması</a>, metnini okudum ve
+                onaylıyorum.</label>
+        </div>
+        <div class="o-call-form__row o-call-form__row--checkbox">
+            <input type="checkbox" name="callCampaigns" >
+            <label for="callCampaigns"><a href="https://www.fuzulev.com.tr/acik-riza-metni">Kampanyalardan haberdar olmak için tarafıma elektronik ileti gönderilmesini kabul ederim.</a></label>
+        </div>
+        <div class="o-call-form__row o-call-form__row--submit">
+            <button type="submit" data-formtype="modal" class="c-button c-button--yellow">
+                <span>Bilgilerimi Gönder</span>
+            </button>
+        </div>
+    </div>
+    <div class="o-call-form__footer">
+        <a href="tel:4446313" onclick="phoneEvent('form',this)">
+            <i>
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                                d="M5.22656 8.75003C5.8697 10.0782 6.94366 11.1494 8.27344 11.7891C8.37153 11.8355 8.48002 11.8556 8.58824 11.8474C8.69646 11.8392 8.80067 11.8029 8.89062 11.7422L10.8437 10.4375C10.93 10.379 11.0298 10.3433 11.1336 10.3337C11.2374 10.3242 11.342 10.3411 11.4375 10.3828L15.0938 11.9532C15.2187 12.0052 15.3231 12.0968 15.3909 12.214C15.4586 12.3311 15.486 12.4673 15.4688 12.6016C15.3529 13.5061 14.9114 14.3373 14.2269 14.9398C13.5424 15.5424 12.6619 15.8748 11.75 15.875C8.93207 15.875 6.22956 14.7556 4.23699 12.763C2.24442 10.7705 1.125 8.06795 1.125 5.25003C1.12521 4.33815 1.45767 3.45759 2.06018 2.77312C2.66269 2.08864 3.49395 1.64716 4.39844 1.53128C4.53269 1.51403 4.66888 1.5414 4.78605 1.60916C4.90322 1.67692 4.99487 1.78132 5.04687 1.90628L6.61719 5.57034C6.65802 5.66436 6.67511 5.76698 6.66693 5.86916C6.65876 5.97134 6.62558 6.06994 6.57031 6.15628L5.26562 8.14065C5.20754 8.2304 5.17345 8.33355 5.16661 8.44024C5.15977 8.54693 5.18041 8.65359 5.22656 8.75003V8.75003Z"
+                                stroke="#1A4088" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </i>
+            444 63 13
+        </a>
+        
+        <a href="https://www.fuzulev.com.tr/subelerimiz">
+            <i>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_130_35497)">
+                        <path d="M1.25 16.875H18.75" stroke="#1A4088" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                        <path
+                                    d="M11.25 16.875V3.125C11.25 2.95924 11.1842 2.80027 11.0669 2.68306C10.9497 2.56585 10.7908 2.5 10.625 2.5H3.125C2.95924 2.5 2.80027 2.56585 2.68306 2.68306C2.56585 2.80027 2.5 2.95924 2.5 3.125V16.875"
+                                    stroke="#1A4088" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                                    d="M17.5 16.875V8.125C17.5 7.95924 17.4342 7.80027 17.3169 7.68306C17.1997 7.56585 17.0408 7.5 16.875 7.5H11.25"
+                                    stroke="#1A4088" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M5.3125 5.625H7.5" stroke="#1A4088" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                        <path d="M6.25 10.625H8.4375" stroke="#1A4088" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                        <path d="M5.3125 13.75H7.5" stroke="#1A4088" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                        <path d="M14.0625 13.75H14.6875" stroke="#1A4088" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                        <path d="M14.0625 10.625H14.6875" stroke="#1A4088" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_130_35497">
+                            <rect width="20" height="20" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
+            </i>
+            Şubelerimiz
+        </a>
+    </div>
+    <!-- Error Message-->
+    <div class="o-call-form__message o-call-form__message--error" style="display: none;">
+        <div class="o-call-form__message-img">
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_1261_45002)">
+                    <path
+                                d="M20.1375 40.5L9 49.5V13.5C9 12.9033 9.23705 12.331 9.65901 11.909C10.081 11.4871 10.6533 11.25 11.25 11.25H47.25C47.8467 11.25 48.419 11.4871 48.841 11.909C49.2629 12.331 49.5 12.9033 49.5 13.5V38.25C49.5 38.8467 49.2629 39.419 48.841 39.841C48.419 40.2629 47.8467 40.5 47.25 40.5H20.1375Z"
+                                stroke="#C42F2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                                d="M22.5 40.5V51.75C22.5 52.3467 22.7371 52.919 23.159 53.341C23.581 53.7629 24.1533 54 24.75 54H51.8625L63 63V27C63 26.4033 62.7629 25.831 62.341 25.409C61.919 24.9871 61.3467 24.75 60.75 24.75H49.5"
+                                stroke="#C42F2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_1261_45002">
+                        <rect width="72" height="72" fill="white" />
+                    </clipPath>
+                </defs>
+            </svg>
+
+        </div>
+        <div class="o-call-form__message-content">
+            <h4>İşleminiz Gerçekleşmedi</h4>
+            <p>
+                Formunuz gönderilemedi. Lütfen
+                tekrar deneyin</p>
+        </div>
+        <div class="o-call-form__message-action">
+            <a href="javascript:;" class="c-button c-button--yellow">
+                <span>Yeni Talep Formu</span>
+            </a>
+        </div>
+    </div>
+    <!--Success Message-->
+    <div class="o-call-form__message o-call-form__message--success" style="display: none;">
+        <div class="o-call-form__message-img">
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_1261_45002)">
+                    <path
+                                d="M20.1375 40.5L9 49.5V13.5C9 12.9033 9.23705 12.331 9.65901 11.909C10.081 11.4871 10.6533 11.25 11.25 11.25H47.25C47.8467 11.25 48.419 11.4871 48.841 11.909C49.2629 12.331 49.5 12.9033 49.5 13.5V38.25C49.5 38.8467 49.2629 39.419 48.841 39.841C48.419 40.2629 47.8467 40.5 47.25 40.5H20.1375Z"
+                                stroke="#C42F2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                                d="M22.5 40.5V51.75C22.5 52.3467 22.7371 52.919 23.159 53.341C23.581 53.7629 24.1533 54 24.75 54H51.8625L63 63V27C63 26.4033 62.7629 25.831 62.341 25.409C61.919 24.9871 61.3467 24.75 60.75 24.75H49.5"
+                                stroke="#C42F2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_1261_45002">
+                        <rect width="72" height="72" fill="white" />
+                    </clipPath>
+                </defs>
+            </svg>
+
+        </div>
+        <div class="o-call-form__message-content">
+            <h4>Teşekkürler</h4>
+            <p>Formunuz başarıyla gönderildi.</p>
+        </div>
+        <div class="o-call-form__message-action">
+            <a href="javascript:;" class="c-button c-button--yellow">
+                <span>Yeni Mesaj Gönder</span>
+            </a>
+        </div>
+    </div>
+</form>
+    </body>
+<script src="https://www.google.com/recaptcha/api.js?render=6Len7DEmAAAAAGicghpfkYmMzXns5cmRtf15F1c7" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyCTOOVpn6EaLkHN0RiRWn5E-eTTNk2XdNU" defer></script>
+</html>

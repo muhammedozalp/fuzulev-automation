@@ -1,0 +1,60 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Testing
+test-output/
+screenshots/
+reports/
+allure-results/
+extent-reports/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Selenium
+drivers/
+chromedriver.exe
+geckodriver.exe
+msedgedriver.exe
+
+# Test Data (keep structure, ignore sensitive data)
+testdata/sensitive/
+*.xlsx
+*.csv
+
+# Node modules (if using any JS tools)
+node_modules/
+
+# Environment specific
+config/local.properties
+.env
