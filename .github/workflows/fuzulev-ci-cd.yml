@@ -1,0 +1,431 @@
+name: 🔬 Fuzulev QA Automation CI/CD
+
+on:
+  # Scheduled testing during off-peak hours (2-6 AM Turkish time = 23:00-03:00 UTC)
+  schedule:
+    - cron: '0 23 * * *'    # Daily at 2:00 AM Turkish time
+    - cron: '0 1 * * *'     # Daily at 4:00 AM Turkish time
+    - cron: '0 3 * * *'     # Daily at 6:00 AM Turkish time
+  
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      test_environment:
+        description: 'Test Environment'
+        required: true
+        default: 'remote'
+        type: choice
+        options:
+          - remote
+          - local
+      test_suite:
+        description: 'Test Suite to Run'
+        required: true
+        default: 'smoke'
+        type: choice
+        options:
+          - smoke
+          - functional
+          - api
+          - mobile
+          - full
+      browser:
+        description: 'Browser'
+        required: true
+        default: 'chrome'
+        type: choice
+        options:
+          - chrome
+          - firefox
+          - edge
+
+  # Pull request testing
+  pull_request:
+    branches: [ main, develop ]
+    types: [opened, synchronize, reopened]
+
+  # Push to main branch
+  push:
+    branches: [ main ]
+
+env:
+  JAVA_VERSION: '21'
+  MAVEN_OPTS: '-Dmaven.repo.local=.m2/repository'
+
+jobs:
+  setup:
+    name: 🏗️ Environment Setup
+    runs-on: ubuntu-latest
+    outputs:
+      test-environment: ${{ steps.set-env.outputs.test-environment }}
+      test-suite: ${{ steps.set-env.outputs.test-suite }}
+      browser: ${{ steps.set-env.outputs.browser }}
+    steps:
+      - name: 📋 Set Environment Variables
+        id: set-env
+        run: |
+          # Default values for scheduled runs
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "test-environment=remote" >> $GITHUB_OUTPUT
+            echo "test-suite=smoke" >> $GITHUB_OUTPUT
+            echo "browser=chrome" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "test-environment=${{ github.event.inputs.test_environment }}" >> $GITHUB_OUTPUT
+            echo "test-suite=${{ github.event.inputs.test_suite }}" >> $GITHUB_OUTPUT
+            echo "browser=${{ github.event.inputs.browser }}" >> $GITHUB_OUTPUT
+          else
+            echo "test-environment=remote" >> $GITHUB_OUTPUT
+            echo "test-suite=smoke" >> $GITHUB_OUTPUT
+            echo "browser=chrome" >> $GITHUB_OUTPUT
+          fi
+
+  smoke-tests:
+    name: 🚀 Smoke Tests
+    runs-on: ubuntu-latest
+    needs: setup
+    if: ${{ needs.setup.outputs.test-suite == 'smoke' || needs.setup.outputs.test-suite == 'full' }}
+    strategy:
+      matrix:
+        browser: [chrome]
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          cache: maven
+
+      - name: 🔧 Setup Browser - Chrome
+        if: matrix.browser == 'chrome'
+        uses: browser-actions/setup-chrome@latest
+        with:
+          chrome-version: stable
+
+      - name: 🔧 Setup Browser - Firefox
+        if: matrix.browser == 'firefox'
+        uses: browser-actions/setup-firefox@latest
+        with:
+          firefox-version: latest
+
+      - name: 📦 Cache Maven Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2-
+
+      - name: 🔨 Build Project
+        run: mvn clean compile test-compile
+
+      - name: 🧪 Run Smoke Tests
+        run: |
+          mvn test -Dgroups=smoke \
+            -Dbrowser=${{ matrix.browser }} \
+            -Denvironment=${{ needs.setup.outputs.test-environment }} \
+            -Dmaven.test.failure.ignore=true
+        continue-on-error: true
+
+      - name: 📊 Generate Test Report
+        if: always()
+        run: |
+          echo "## 🚀 Smoke Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "- **Browser:** ${{ matrix.browser }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environment:** ${{ needs.setup.outputs.test-environment }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Timestamp:** $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f target/surefire-reports/TestSuite.txt ]; then
+            echo "### Test Summary:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat target/surefire-reports/TestSuite.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 📤 Upload Test Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: smoke-test-reports-${{ matrix.browser }}
+          path: |
+            target/surefire-reports/
+            target/test-output/
+            screenshots/
+
+  api-tests:
+    name: 🌐 API Tests
+    runs-on: ubuntu-latest
+    needs: setup
+    if: ${{ needs.setup.outputs.test-suite == 'api' || needs.setup.outputs.test-suite == 'full' }}
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          cache: maven
+
+      - name: 📦 Cache Maven Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2-
+
+      - name: 🔨 Build Project
+        run: mvn clean compile test-compile
+
+      - name: 🌐 Run API Tests
+        run: |
+          mvn test -Dgroups=api \
+            -Denvironment=remote \
+            -Dmaven.test.failure.ignore=true
+        continue-on-error: true
+
+      - name: 📊 Generate API Test Report
+        if: always()
+        run: |
+          echo "## 🌐 API Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environment:** remote (fuzulev.com.tr)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Timestamp:** $(date)" >> $GITHUB_STEP_SUMMARY
+
+      - name: 📤 Upload API Test Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: api-test-reports
+          path: |
+            target/surefire-reports/
+            target/test-output/
+
+  mobile-tests:
+    name: 📱 Mobile Responsive Tests
+    runs-on: ubuntu-latest
+    needs: setup
+    if: ${{ needs.setup.outputs.test-suite == 'mobile' || needs.setup.outputs.test-suite == 'full' }}
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          cache: maven
+
+      - name: 🔧 Setup Chrome for Mobile Testing
+        uses: browser-actions/setup-chrome@latest
+        with:
+          chrome-version: stable
+
+      - name: 📦 Cache Maven Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2-
+
+      - name: 🔨 Build Project
+        run: mvn clean compile test-compile
+
+      - name: 📱 Run Mobile Tests
+        run: |
+          mvn test -Dgroups=mobile,responsive \
+            -Dbrowser=chrome \
+            -Denvironment=remote \
+            -Dmaven.test.failure.ignore=true
+        continue-on-error: true
+
+      - name: 📊 Generate Mobile Test Report
+        if: always()
+        run: |
+          echo "## 📱 Mobile Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environment:** remote (fuzulev.com.tr)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Timestamp:** $(date)" >> $GITHUB_STEP_SUMMARY
+
+      - name: 📤 Upload Mobile Test Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: mobile-test-reports
+          path: |
+            target/surefire-reports/
+            target/test-output/
+            screenshots/
+
+  functional-tests:
+    name: ⚙️ Functional Tests
+    runs-on: ubuntu-latest
+    needs: setup
+    if: ${{ needs.setup.outputs.test-suite == 'functional' || needs.setup.outputs.test-suite == 'full' }}
+    strategy:
+      matrix:
+        browser: [chrome, firefox]
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          cache: maven
+
+      - name: 🔧 Setup Browser - Chrome
+        if: matrix.browser == 'chrome'
+        uses: browser-actions/setup-chrome@latest
+
+      - name: 🔧 Setup Browser - Firefox
+        if: matrix.browser == 'firefox'
+        uses: browser-actions/setup-firefox@latest
+
+      - name: 📦 Cache Maven Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2-
+
+      - name: 🔨 Build Project
+        run: mvn clean compile test-compile
+
+      - name: ⚙️ Run Functional Tests
+        run: |
+          mvn test -Dgroups=functional \
+            -Dbrowser=${{ matrix.browser }} \
+            -Denvironment=remote \
+            -Dmaven.test.failure.ignore=true
+        continue-on-error: true
+
+      - name: 📤 Upload Functional Test Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: functional-test-reports-${{ matrix.browser }}
+          path: |
+            target/surefire-reports/
+            target/test-output/
+            screenshots/
+
+  notify-slack:
+    name: 📢 Slack Notification
+    runs-on: ubuntu-latest
+    needs: [setup, smoke-tests, api-tests, mobile-tests, functional-tests]
+    if: always()
+    steps:
+      - name: 📢 Send Slack Notification
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          custom_payload: |
+            {
+              "text": "Fuzulev QA Test Results",
+              "attachments": [{
+                "color": "${{ job.status == 'success' && 'good' || job.status == 'failure' && 'danger' || 'warning' }}",
+                "fields": [
+                  {
+                    "title": "Repository",
+                    "value": "${{ github.repository }}",
+                    "short": true
+                  },
+                  {
+                    "title": "Test Suite",
+                    "value": "${{ needs.setup.outputs.test-suite }}",
+                    "short": true
+                  },
+                  {
+                    "title": "Environment",
+                    "value": "${{ needs.setup.outputs.test-environment }}",
+                    "short": true
+                  },
+                  {
+                    "title": "Browser",
+                    "value": "${{ needs.setup.outputs.browser }}",
+                    "short": true
+                  },
+                  {
+                    "title": "Trigger",
+                    "value": "${{ github.event_name }}",
+                    "short": true
+                  },
+                  {
+                    "title": "Status",
+                    "value": "${{ job.status }}",
+                    "short": true
+                  }
+                ],
+                "footer": "Fuzulev QA Automation",
+                "ts": ${{ github.event.head_commit.timestamp }}
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  notify-jira:
+    name: 🎫 JIRA Integration
+    runs-on: ubuntu-latest
+    needs: [setup, smoke-tests, api-tests, mobile-tests, functional-tests]
+    if: failure()
+    steps:
+      - name: 🎫 Create JIRA Issue for Failed Tests
+        uses: atlassian/gajira-create@v3
+        with:
+          project: FQT
+          issuetype: Bug
+          summary: "🚨 Automated Test Failure: ${{ github.event_name }} - ${{ needs.setup.outputs.test-suite }}"
+          description: |
+            **Test Execution Failed**
+            
+            **Details:**
+            - Repository: ${{ github.repository }}
+            - Branch: ${{ github.ref }}
+            - Commit: ${{ github.sha }}
+            - Test Suite: ${{ needs.setup.outputs.test-suite }}
+            - Environment: ${{ needs.setup.outputs.test-environment }}
+            - Browser: ${{ needs.setup.outputs.browser }}
+            - Trigger: ${{ github.event_name }}
+            - Workflow: ${{ github.run_id }}
+            
+            **Action Required:**
+            Please investigate the test failures and fix any issues found.
+            
+            **Logs:** [View GitHub Actions Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
+  security-scan:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: 🔒 Run Maven Security Scan
+        run: |
+          mvn org.owasp:dependency-check-maven:check \
+            -DskipTests=true \
+            -Dformat=ALL
+        continue-on-error: true
+
+      - name: 📤 Upload Security Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: security-reports
+          path: target/dependency-check-report.*
