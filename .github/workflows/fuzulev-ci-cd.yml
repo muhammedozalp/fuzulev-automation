@@ -1,6 +1,14 @@
 name: 🔬 Fuzulev QA Automation CI/CD
 
 on:
+  # Push events to master branch
+  push:
+    branches: [ master, main ]
+  
+  # Pull request events
+  pull_request:
+    branches: [ master, main ]
+  
   # Scheduled testing during off-peak hours (2-6 AM Turkish time = 23:00-03:00 UTC)
   schedule:
     - cron: '0 23 * * *'    # Daily at 2:00 AM Turkish time
@@ -38,15 +46,6 @@ on:
           - chrome
           - firefox
           - edge
-
-  # Pull request testing
-  pull_request:
-    branches: [ main, develop ]
-    types: [opened, synchronize, reopened]
-
-  # Push to main branch
-  push:
-    branches: [ main ]
 
 env:
   JAVA_VERSION: '21'
