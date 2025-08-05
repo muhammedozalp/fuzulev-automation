@@ -322,12 +322,12 @@ jobs:
       - name: 📢 Send Slack Notification
         uses: 8398a7/action-slack@v3
         with:
-          status: ${{ job.status }}
+          status: ${{ (needs.smoke-tests.result == 'failure' || needs.api-tests.result == 'failure' || needs.mobile-tests.result == 'failure' || needs.functional-tests.result == 'failure') && 'failure' || 'success' }}
           custom_payload: |
             {
-              "text": "Fuzulev QA Test Results",
+              "text": "${{ (needs.smoke-tests.result == 'failure' || needs.api-tests.result == 'failure' || needs.mobile-tests.result == 'failure' || needs.functional-tests.result == 'failure') && '🚨 Fuzulev QA Test FAILURES Detected' || '✅ Fuzulev QA Tests PASSED' }}",
               "attachments": [{
-                "color": "${{ job.status == 'success' && 'good' || job.status == 'failure' && 'danger' || 'warning' }}",
+                "color": "${{ (needs.smoke-tests.result == 'failure' || needs.api-tests.result == 'failure' || needs.mobile-tests.result == 'failure' || needs.functional-tests.result == 'failure') && 'danger' || 'good' }}",
                 "fields": [
                   {
                     "title": "Repository",
@@ -356,7 +356,7 @@ jobs:
                   },
                   {
                     "title": "Status",
-                    "value": "${{ job.status }}",
+                    "value": "${{ (needs.smoke-tests.result == 'failure' || needs.api-tests.result == 'failure' || needs.mobile-tests.result == 'failure' || needs.functional-tests.result == 'failure') && 'FAILED' || 'PASSED' }}",
                     "short": true
                   }
                 ],
@@ -380,6 +380,7 @@ jobs:
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
       
       - name: 🎫 Create JIRA Issue for Failed Tests
+        id: create-issue
         uses: atlassian/gajira-create@v3
         with:
           project: FQT
@@ -402,6 +403,40 @@ jobs:
             Please investigate the test failures and fix any issues found.
             
             **Logs:** [View GitHub Actions Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+      
+      - name: 🏃‍♂️ Find Active Sprint
+        id: find-sprint
+        run: |
+          SPRINT_ID=$(curl -s -X GET \
+            "${{ secrets.JIRA_BASE_URL }}/rest/agile/1.0/board?projectKeyOrId=FQT" \
+            -H "Authorization: Basic $(echo -n '${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}' | base64)" \
+            -H "Accept: application/json" | \
+            jq -r '.values[0].id' | \
+            xargs -I {} curl -s -X GET \
+            "${{ secrets.JIRA_BASE_URL }}/rest/agile/1.0/board/{}/sprint?state=active" \
+            -H "Authorization: Basic $(echo -n '${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}' | base64)" \
+            -H "Accept: application/json" | \
+            jq -r '.values[0].id // empty')
+          
+          if [ -n "$SPRINT_ID" ]; then
+            echo "sprint-id=$SPRINT_ID" >> $GITHUB_OUTPUT
+            echo "Active sprint found: $SPRINT_ID"
+          else
+            echo "No active sprint found"
+          fi
+      
+      - name: 📌 Assign Issue to Active Sprint
+        if: steps.find-sprint.outputs.sprint-id
+        run: |
+          curl -X POST \
+            "${{ secrets.JIRA_BASE_URL }}/rest/agile/1.0/sprint/${{ steps.find-sprint.outputs.sprint-id }}/issue" \
+            -H "Authorization: Basic $(echo -n '${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}' | base64)" \
+            -H "Accept: application/json" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "issues": ["${{ steps.create-issue.outputs.issue }}"]
+            }'
+          echo "✅ Issue ${{ steps.create-issue.outputs.issue }} assigned to sprint ${{ steps.find-sprint.outputs.sprint-id }}"
 
   security-scan:
     name: 🔒 Security Scan
