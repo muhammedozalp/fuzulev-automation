@@ -1,4 +1,4 @@
-package com.fuzulev.automation.tests;
+package com.fuzulev.automation;
 
 import com.fuzulev.automation.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;

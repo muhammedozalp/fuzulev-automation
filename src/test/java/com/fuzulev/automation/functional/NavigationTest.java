@@ -1,7 +1,7 @@
-package com.fuzulev.automation.tests.functional;
+package com.fuzulev.automation.functional;
 
 import com.fuzulev.automation.pages.HomePage;
-import com.fuzulev.automation.tests.BaseTest;
+import com.fuzulev.automation.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

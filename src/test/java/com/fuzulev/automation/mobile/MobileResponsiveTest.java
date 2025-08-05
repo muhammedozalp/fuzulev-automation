@@ -1,7 +1,7 @@
-package com.fuzulev.automation.tests.mobile;
+package com.fuzulev.automation.mobile;
 
 import com.fuzulev.automation.pages.HomePage;
-import com.fuzulev.automation.tests.BaseTest;
+import com.fuzulev.automation.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.Dimension;

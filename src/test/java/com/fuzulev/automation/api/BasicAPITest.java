@@ -1,6 +1,6 @@
-package com.fuzulev.automation.tests.api;
+package com.fuzulev.automation.api;
 
-import com.fuzulev.automation.tests.BaseTest;
+import com.fuzulev.automation.BaseTest;
 
 import io.restassured.response.Response;
 import org.testng.Assert;

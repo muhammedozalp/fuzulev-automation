@@ -17,8 +17,8 @@
     <test name="SmokeTests" enabled="true">
         <parameter name="testType" value="smoke"/>
         <classes>
-            <class name="com.fuzulev.automation.tests.functional.HomePageTest"/>
-            <class name="com.fuzulev.automation.tests.functional.NavigationTest"/>
+            <class name="com.fuzulev.automation.functional.HomePageTest"/>
+            <class name="com.fuzulev.automation.functional.NavigationTest"/>
         </classes>
     </test>
     
@@ -32,7 +32,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.tests.functional.*"/>
+            <package name="com.fuzulev.automation.functional.*"/>
         </packages>
     </test>
     
@@ -45,7 +45,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.tests.api.*"/>
+            <package name="com.fuzulev.automation.api.*"/>
         </packages>
     </test>
     
@@ -60,7 +60,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.tests.mobile.*"/>
+            <package name="com.fuzulev.automation.mobile.*"/>
         </packages>
     </test>
     
@@ -75,7 +75,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.tests.regression.*"/>
+            <package name="com.fuzulev.automation.regression.*"/>
         </packages>
     </test>
     
@@ -88,7 +88,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.tests.integration.*"/>
+            <package name="com.fuzulev.automation.integration.*"/>
         </packages>
     </test>
     
@@ -102,7 +102,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.tests.uat.*"/>
+            <package name="com.fuzulev.automation.uat.*"/>
         </packages>
     </test>
     
@@ -115,7 +115,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.tests.performance.*"/>
+            <package name="com.fuzulev.automation.performance.*"/>
         </packages>
     </test>
 
