@@ -360,8 +360,7 @@ jobs:
                     "short": true
                   }
                 ],
-                "footer": "Fuzulev QA Automation",
-                "ts": ${{ github.event.head_commit.timestamp }}
+                "footer": "Fuzulev QA Automation"
               }]
             }
         env:
