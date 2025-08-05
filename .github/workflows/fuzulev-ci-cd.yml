@@ -322,12 +322,12 @@ jobs:
       - name: 📢 Send Slack Notification
         uses: 8398a7/action-slack@v3
         with:
-          status: ${{ (needs.smoke-tests.result == 'failure' || needs.api-tests.result == 'failure' || needs.mobile-tests.result == 'failure' || needs.functional-tests.result == 'failure') && 'failure' || 'success' }}
+          status: ${{ (needs['smoke-tests'].result == 'failure' || needs['api-tests'].result == 'failure' || needs['mobile-tests'].result == 'failure' || needs['functional-tests'].result == 'failure') && 'failure' || 'success' }}
           custom_payload: |
             {
-              "text": "${{ (needs.smoke-tests.result == 'failure' || needs.api-tests.result == 'failure' || needs.mobile-tests.result == 'failure' || needs.functional-tests.result == 'failure') && '🚨 Fuzulev QA Test FAILURES Detected' || '✅ Fuzulev QA Tests PASSED' }}",
+              "text": "${{ (needs['smoke-tests'].result == 'failure' || needs['api-tests'].result == 'failure' || needs['mobile-tests'].result == 'failure' || needs['functional-tests'].result == 'failure') && '🚨 Fuzulev QA Test FAILURES Detected' || '✅ Fuzulev QA Tests PASSED' }}",
               "attachments": [{
-                "color": "${{ (needs.smoke-tests.result == 'failure' || needs.api-tests.result == 'failure' || needs.mobile-tests.result == 'failure' || needs.functional-tests.result == 'failure') && 'danger' || 'good' }}",
+                "color": "${{ (needs['smoke-tests'].result == 'failure' || needs['api-tests'].result == 'failure' || needs['mobile-tests'].result == 'failure' || needs['functional-tests'].result == 'failure') && 'danger' || 'good' }}",
                 "fields": [
                   {
                     "title": "Repository",
@@ -356,7 +356,7 @@ jobs:
                   },
                   {
                     "title": "Status",
-                    "value": "${{ (needs.smoke-tests.result == 'failure' || needs.api-tests.result == 'failure' || needs.mobile-tests.result == 'failure' || needs.functional-tests.result == 'failure') && 'FAILED' || 'PASSED' }}",
+                    "value": "${{ (needs['smoke-tests'].result == 'failure' || needs['api-tests'].result == 'failure' || needs['mobile-tests'].result == 'failure' || needs['functional-tests'].result == 'failure') && 'FAILED' || 'PASSED' }}",
                     "short": true
                   }
                 ],
@@ -407,22 +407,30 @@ jobs:
       - name: 🏃‍♂️ Find Active Sprint
         id: find-sprint
         run: |
-          SPRINT_ID=$(curl -s -X GET \
+          # First get board ID
+          BOARD_ID=$(curl -s -X GET \
             "${{ secrets.JIRA_BASE_URL }}/rest/agile/1.0/board?projectKeyOrId=FQT" \
             -H "Authorization: Basic $(echo -n '${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}' | base64)" \
             -H "Accept: application/json" | \
-            jq -r '.values[0].id' | \
-            xargs -I {} curl -s -X GET \
-            "${{ secrets.JIRA_BASE_URL }}/rest/agile/1.0/board/{}/sprint?state=active" \
-            -H "Authorization: Basic $(echo -n '${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}' | base64)" \
-            -H "Accept: application/json" | \
-            jq -r '.values[0].id // empty')
+            jq -r '.values[0].id')
           
-          if [ -n "$SPRINT_ID" ]; then
+          echo "Board ID: $BOARD_ID"
+          
+          # Then get active sprints for that board
+          SPRINT_RESPONSE=$(curl -s -X GET \
+            "${{ secrets.JIRA_BASE_URL }}/rest/agile/1.0/board/$BOARD_ID/sprint?state=active" \
+            -H "Authorization: Basic $(echo -n '${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}' | base64)" \
+            -H "Accept: application/json")
+          
+          echo "Sprint response: $SPRINT_RESPONSE"
+          
+          SPRINT_ID=$(echo "$SPRINT_RESPONSE" | jq -r '.values[0].id // empty')
+          
+          if [ -n "$SPRINT_ID" ] && [ "$SPRINT_ID" != "null" ]; then
             echo "sprint-id=$SPRINT_ID" >> $GITHUB_OUTPUT
-            echo "Active sprint found: $SPRINT_ID"
+            echo "✅ Active sprint found: $SPRINT_ID"
           else
-            echo "No active sprint found"
+            echo "❌ No active sprint found"
           fi
       
       - name: 📌 Assign Issue to Active Sprint
