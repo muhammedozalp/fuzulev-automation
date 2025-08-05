@@ -404,70 +404,7 @@ jobs:
             
             **Logs:** [View GitHub Actions Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
       
-      - name: 🏃‍♂️ Find Active Sprint
-        id: find-sprint
-        run: |
-          # Try multiple approaches to find active sprint
-          echo "🔍 Searching for active sprint..."
-          
-          # Method 1: Search for sprints by name pattern
-          SPRINT_SEARCH=$(curl -s -X GET \
-            "${{ secrets.JIRA_BASE_URL }}/rest/agile/1.0/sprint" \
-            -H "Authorization: Basic $(echo -n '${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}' | base64)" \
-            -H "Accept: application/json" | \
-            jq -r '.values[] | select(.name | contains("FQT Sprint")) | select(.state == "active") | .id' | head -1)
-          
-          if [ -n "$SPRINT_SEARCH" ] && [ "$SPRINT_SEARCH" != "null" ]; then
-            echo "sprint-id=$SPRINT_SEARCH" >> $GITHUB_OUTPUT
-            echo "✅ Active sprint found via search: $SPRINT_SEARCH"
-          else
-            echo "⚠️ Sprint search failed, trying board API..."
-            
-            # Method 2: Get board ID and find sprint
-            BOARD_RESPONSE=$(curl -s -X GET \
-              "${{ secrets.JIRA_BASE_URL }}/rest/agile/1.0/board?projectKeyOrId=FQT" \
-              -H "Authorization: Basic $(echo -n '${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}' | base64)" \
-              -H "Accept: application/json")
-            
-            echo "Board API response: $BOARD_RESPONSE"
-            
-            BOARD_ID=$(echo "$BOARD_RESPONSE" | jq -r '.values[0].id // empty' 2>/dev/null || echo "")
-            
-            if [ -n "$BOARD_ID" ] && [ "$BOARD_ID" != "null" ] && [ "$BOARD_ID" != "empty" ]; then
-              echo "Board ID found: $BOARD_ID"
-              
-              SPRINT_RESPONSE=$(curl -s -X GET \
-                "${{ secrets.JIRA_BASE_URL }}/rest/agile/1.0/board/$BOARD_ID/sprint?state=active" \
-                -H "Authorization: Basic $(echo -n '${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}' | base64)" \
-                -H "Accept: application/json")
-              
-              echo "Sprint API response: $SPRINT_RESPONSE"
-              
-              SPRINT_ID=$(echo "$SPRINT_RESPONSE" | jq -r '.values[0].id // empty' 2>/dev/null || echo "")
-              
-              if [ -n "$SPRINT_ID" ] && [ "$SPRINT_ID" != "null" ] && [ "$SPRINT_ID" != "empty" ]; then
-                echo "sprint-id=$SPRINT_ID" >> $GITHUB_OUTPUT
-                echo "✅ Active sprint found via board: $SPRINT_ID"
-              else
-                echo "❌ No active sprint found via board API"
-              fi
-            else
-              echo "❌ Could not get board ID"
-            fi
-          fi
-      
-      - name: 📌 Assign Issue to Active Sprint
-        if: steps.find-sprint.outputs.sprint-id
-        run: |
-          curl -X POST \
-            "${{ secrets.JIRA_BASE_URL }}/rest/agile/1.0/sprint/${{ steps.find-sprint.outputs.sprint-id }}/issue" \
-            -H "Authorization: Basic $(echo -n '${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}' | base64)" \
-            -H "Accept: application/json" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "issues": ["${{ steps.create-issue.outputs.issue }}"]
-            }'
-          echo "✅ Issue ${{ steps.create-issue.outputs.issue }} assigned to sprint ${{ steps.find-sprint.outputs.sprint-id }}"
+
 
   security-scan:
     name: 🔒 Security Scan
