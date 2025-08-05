@@ -375,7 +375,7 @@ $(document).ready(function () {
                 //         formatOnDisplay: true,
                 //         preferredCountries: ["tr"],
                 //         utilsScript:
-                //             "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/utils.js",
+                //             "assets/third-parties/assets/third-parties/cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/utils.js",
                 //     });
 
                 //     $(element).on("countrychange", function (event) {
@@ -464,7 +464,7 @@ $(document).ready(function () {
                 //         formatOnDisplay: true,
                 //         preferredCountries: ["tr"],
                 //         utilsScript:
-                //             "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/utils.js",
+                //             "assets/third-parties/assets/third-parties/cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/utils.js",
                 //     });
 
                 //     $(element).on("countrychange", function (event) {

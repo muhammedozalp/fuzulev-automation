@@ -898,7 +898,7 @@ body.js-bg:after {position: absolute;left: 0;top: 0;content: "";width: 100%;heig
 
 .select2-selection__arrow {width: 30px !important;height: 100% !important;display: flex;align-items: center}
 
-.select2-selection__arrow b {background-image: url(../../../../cdn4.iconfinder.com/data/icons/user-interface-174/32/4589369.png);background-color: rgba(0, 0, 0, 0);background-size: contain;border: none !important;height: 20px !important;width: 20px !important;margin: auto !important;top: auto !important;left: auto !important}
+.select2-selection__arrow b {background-image: url(../../../assets/third-parties/bundles.efilli.com/data/icons/user-interface-174/32/4589369.png);background-color: rgba(0, 0, 0, 0);background-size: contain;border: none !important;height: 20px !important;width: 20px !important;margin: auto !important;top: auto !important;left: auto !important}
 
 .select2-dropdown {border-color: #f2f2f2 !important}
 

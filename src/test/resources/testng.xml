@@ -6,19 +6,19 @@
     <parameter name="browser" value="chrome"/>
     <parameter name="environment" value="local"/>
     
-    <!-- Listeners -->
-    <listeners>
+    <!-- Listeners (Advanced features - will add later) -->
+    <!-- <listeners>
         <listener class-name="com.fuzulev.automation.utils.ExtentReportListener"/>
         <listener class-name="com.fuzulev.automation.utils.TestRetryListener"/>
         <listener class-name="com.fuzulev.automation.utils.ScreenshotListener"/>
-    </listeners>
+    </listeners> -->
     
     <!-- Smoke Test Suite -->
     <test name="SmokeTests" enabled="true">
         <parameter name="testType" value="smoke"/>
         <classes>
-            <class name="com.fuzulev.automation.functional.HomePageTest"/>
-            <class name="com.fuzulev.automation.functional.NavigationTest"/>
+            <class name="com.fuzulev.automation.tests.functional.HomePageTest"/>
+            <class name="com.fuzulev.automation.tests.functional.NavigationTest"/>
         </classes>
     </test>
     
@@ -32,7 +32,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.functional.*"/>
+            <package name="com.fuzulev.automation.tests.functional.*"/>
         </packages>
     </test>
     
@@ -45,7 +45,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.api.*"/>
+            <package name="com.fuzulev.automation.tests.api.*"/>
         </packages>
     </test>
     
@@ -60,7 +60,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.mobile.*"/>
+            <package name="com.fuzulev.automation.tests.mobile.*"/>
         </packages>
     </test>
     
@@ -75,7 +75,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.regression.*"/>
+            <package name="com.fuzulev.automation.tests.regression.*"/>
         </packages>
     </test>
     
@@ -88,7 +88,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.integration.*"/>
+            <package name="com.fuzulev.automation.tests.integration.*"/>
         </packages>
     </test>
     
@@ -102,7 +102,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.uat.*"/>
+            <package name="com.fuzulev.automation.tests.uat.*"/>
         </packages>
     </test>
     
@@ -115,7 +115,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.fuzulev.automation.performance.*"/>
+            <package name="com.fuzulev.automation.tests.performance.*"/>
         </packages>
     </test>
 
