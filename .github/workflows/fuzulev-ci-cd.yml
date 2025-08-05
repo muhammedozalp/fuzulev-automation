@@ -374,6 +374,13 @@ jobs:
     needs: [setup, smoke-tests, api-tests, mobile-tests, functional-tests]
     if: failure()
     steps:
+      - name: 🔐 JIRA Login
+        uses: atlassian/gajira-login@v3
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+      
       - name: 🎫 Create JIRA Issue for Failed Tests
         uses: atlassian/gajira-create@v3
         with:
@@ -397,10 +404,6 @@ jobs:
             Please investigate the test failures and fix any issues found.
             
             **Logs:** [View GitHub Actions Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
-        env:
-          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
   security-scan:
     name: 🔒 Security Scan
