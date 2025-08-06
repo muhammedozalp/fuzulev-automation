@@ -16,17 +16,17 @@ public class HomePage extends BasePage {
 
     
     // Header elements
-    @FindBy(css = "header, .header, nav, .nav, .navbar")
+    @FindBy(css = ".o-header")
     private WebElement headerSection;
     
-    @FindBy(css = "img[alt*='logo'], .logo, [class*='logo']")
+    @FindBy(css = ".o-header__logo")
     private WebElement logoImage;
     
-    @FindBy(css = "nav a, .nav a, .menu a, .navigation a")
+    @FindBy(css = ".o-nav__item")
     private List<WebElement> navigationLinks;
     
     // Main content elements
-    @FindBy(css = "main, .main, .content, #content")
+    @FindBy(css = ".main-wrapper")
     private WebElement mainContent;
     
     @FindBy(css = "h1, .title, .main-title")
