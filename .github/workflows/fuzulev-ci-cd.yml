@@ -110,7 +110,7 @@ jobs:
           firefox-version: latest
 
       - name: 📦 Cache Maven Dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -145,7 +145,7 @@ jobs:
 
       - name: 📤 Upload Test Reports
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: smoke-test-reports-${{ matrix.browser }}
           path: |
@@ -170,7 +170,7 @@ jobs:
           cache: maven
 
       - name: 📦 Cache Maven Dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -195,7 +195,7 @@ jobs:
 
       - name: 📤 Upload API Test Reports
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: api-test-reports
           path: |
@@ -224,7 +224,7 @@ jobs:
           chrome-version: stable
 
       - name: 📦 Cache Maven Dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -250,7 +250,7 @@ jobs:
 
       - name: 📤 Upload Mobile Test Reports
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: mobile-test-reports
           path: |
@@ -286,7 +286,7 @@ jobs:
         uses: browser-actions/setup-firefox@latest
 
       - name: 📦 Cache Maven Dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -305,7 +305,7 @@ jobs:
 
       - name: 📤 Upload Functional Test Reports
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: functional-test-reports-${{ matrix.browser }}
           path: |
@@ -320,7 +320,7 @@ jobs:
     if: always()
     steps:
       - name: 📢 Send Slack Notification
-        uses: 8398a7/action-slack@v3
+        uses: 8398a7/action-slack@v4
         with:
           status: ${{ (needs['smoke-tests'].result == 'failure' || needs['api-tests'].result == 'failure' || needs['mobile-tests'].result == 'failure' || needs['functional-tests'].result == 'failure') && 'failure' || 'success' }}
           custom_payload: |
@@ -373,7 +373,7 @@ jobs:
     if: failure()
     steps:
       - name: 🔐 JIRA Login
-        uses: atlassian/gajira-login@v3
+        uses: atlassian/gajira-login@master
         env:
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
           JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
@@ -381,7 +381,7 @@ jobs:
       
       - name: 🎫 Create JIRA Issue for Failed Tests
         id: create-issue
-        uses: atlassian/gajira-create@v3
+        uses: atlassian/gajira-create@master
         with:
           project: FQT
           issuetype: Bug
@@ -429,7 +429,7 @@ jobs:
 
       - name: 📤 Upload Security Reports
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: security-reports
           path: target/dependency-check-report.*
