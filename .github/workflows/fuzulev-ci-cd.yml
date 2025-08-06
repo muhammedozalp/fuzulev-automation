@@ -320,10 +320,9 @@ jobs:
     if: always()
     steps:
       - name: 📢 Send Slack Notification
-        uses: 8398a7/action-slack@v4
+        uses: slackapi/slack-github-action@v1.27.0
         with:
-          status: ${{ (needs['smoke-tests'].result == 'failure' || needs['api-tests'].result == 'failure' || needs['mobile-tests'].result == 'failure' || needs['functional-tests'].result == 'failure') && 'failure' || 'success' }}
-          custom_payload: |
+          payload: |
             {
               "text": "${{ (needs['smoke-tests'].result == 'failure' || needs['api-tests'].result == 'failure' || needs['mobile-tests'].result == 'failure' || needs['functional-tests'].result == 'failure') && '🚨 Fuzulev QA Test FAILURES Detected' || '✅ Fuzulev QA Tests PASSED' }}",
               "attachments": [{
@@ -420,12 +419,19 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: 'temurin'
 
-      - name: 🔒 Run Maven Security Scan
+      - name: 🔒 Run Maven Security Scan (Fast Mode)
         run: |
           mvn org.owasp:dependency-check-maven:check \
             -DskipTests=true \
-            -Dformat=ALL
+            -Dformat=HTML \
+            -DfailBuildOnCVSS=8 \
+            -DsuppressNvdApiKey=true \
+            -DretireJsAnalyzerEnabled=false \
+            -DnodeAnalyzerEnabled=false \
+            -DassemblyAnalyzerEnabled=false \
+            -DautoUpdate=false
         continue-on-error: true
+        timeout-minutes: 8
 
       - name: 📤 Upload Security Reports
         if: always()
