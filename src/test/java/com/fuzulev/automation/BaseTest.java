@@ -38,11 +38,16 @@ public class BaseTest {
      */
     @BeforeMethod
     @Parameters({"browser", "environment"})
-    public void setUp(@Optional("chrome") String browser, @Optional("local") String environment) {
+    public void setUp(@Optional("chrome") String browser, @Optional("") String environment) {
         System.out.println("\n--- Setting up test ---");
         System.out.println("Browser: " + browser);
-        System.out.println("Environment: " + environment);
         
+        // Use environment from config if not provided as parameter
+        if (environment == null || environment.isEmpty()) {
+            environment = config.getProperty("environment", "local");
+        }
+        
+        System.out.println("Environment: " + environment);
         this.environment = environment;
         
         // Initialize WebDriver
@@ -118,9 +123,9 @@ public class BaseTest {
      */
     private void setBaseUrl(String environment) {
         if ("local".equalsIgnoreCase(environment)) {
-            baseUrl = config.getProperty("local.url", "http://127.0.0.1:5500/fuzulev-local/index.html");
+            baseUrl = config.getProperty("base.url.local", "http://127.0.0.1:5500/fuzulev-local/index.html");
         } else {
-            baseUrl = config.getProperty("remote.url", "https://www.fuzulev.com.tr");
+            baseUrl = config.getProperty("base.url.remote", "https://www.fuzulev.com.tr");
         }
     }
     
@@ -133,8 +138,8 @@ public class BaseTest {
         System.out.println("OS: " + System.getProperty("os.name"));
         System.out.println("User: " + System.getProperty("user.name"));
         System.out.println("Working Directory: " + System.getProperty("user.dir"));
-        System.out.println("Local URL: " + config.getProperty("local.url"));
-        System.out.println("Remote URL: " + config.getProperty("remote.url"));
+        System.out.println("Local URL: " + config.getProperty("base.url.local"));
+        System.out.println("Remote URL: " + config.getProperty("base.url.remote"));
         System.out.println("Default Timeout: " + config.getProperty("default.timeout") + " seconds");
         System.out.println("=======================================\n");
     }
