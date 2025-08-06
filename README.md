@@ -1,6 +1,6 @@
 # 🔬 Web Test Automation Learning Framework
 
-[![CI/CD Status](https://github.com/muhammedozalp/fuzulev-automation/actions/workflows/fuzulev-ci-cd.yml/badge.svg)](https://github.com/muhammedozalp/fuzulev-automation/actions)
+[![CI/CD Status](https://github.com/muhammedozalp/fuzulev-automation/actions/workflows/fuzulev-ci-cd.yml/badge.svg?branch=master)](https://github.com/muhammedozalp/fuzulev-automation/actions)
 [![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://openjdk.java.net/projects/jdk/21/)
 [![Selenium](https://img.shields.io/badge/Selenium-4.15.0-green.svg)](https://selenium.dev/)
 [![TestNG](https://img.shields.io/badge/TestNG-7.8.0-blue.svg)](https://testng.org/)
