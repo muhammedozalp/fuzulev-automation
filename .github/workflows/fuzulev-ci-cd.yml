@@ -74,7 +74,7 @@ jobs:
             echo "browser=${{ github.event.inputs.browser }}" >> $GITHUB_OUTPUT
           else
             echo "test-environment=remote" >> $GITHUB_OUTPUT
-            echo "test-suite=smoke" >> $GITHUB_OUTPUT
+            echo "test-suite=full" >> $GITHUB_OUTPUT
             echo "browser=chrome" >> $GITHUB_OUTPUT
           fi
 
