@@ -16,7 +16,7 @@ public class HomePage extends BasePage {
 
     
     // Header elements
-    @FindBy(css = ".o-header")
+    @FindBy(css = "header.o-header")
     private WebElement headerSection;
     
     @FindBy(css = ".o-header__logo")
@@ -26,7 +26,7 @@ public class HomePage extends BasePage {
     private List<WebElement> navigationLinks;
     
     // Main content elements
-    @FindBy(css = ".main-wrapper")
+    @FindBy(css = "main.main-wrapper")
     private WebElement mainContent;
     
     @FindBy(css = "h1, .title, .main-title")
@@ -104,13 +104,49 @@ public class HomePage extends BasePage {
      * @return boolean true if main elements are visible
      */
     public boolean areMainElementsVisible() {
-        boolean headerVisible = isElementDisplayed(headerSection);
-        boolean contentVisible = isElementDisplayed(mainContent);
-        
-        System.out.println("Header visible: " + headerVisible);
-        System.out.println("Main content visible: " + contentVisible);
-        
-        return headerVisible && contentVisible;
+        try {
+            System.out.println("DEBUG: Checking header element with selector: header.o-header");
+            
+            // Check if element exists at all
+            try {
+                String headerText = headerSection.getTagName();
+                System.out.println("Header element found, tag: " + headerText);
+                boolean headerDisplayed = headerSection.isDisplayed();
+                System.out.println("Header isDisplayed(): " + headerDisplayed);
+                
+                String headerClass = headerSection.getAttribute("class");
+                System.out.println("Header class: " + headerClass);
+            } catch (Exception e) {
+                System.out.println("Header element NOT FOUND: " + e.getMessage());
+            }
+            
+            System.out.println("DEBUG: Checking main content with selector: main.main-wrapper");
+            
+            // Check if element exists at all
+            try {
+                String mainText = mainContent.getTagName();
+                System.out.println("Main element found, tag: " + mainText);
+                boolean mainDisplayed = mainContent.isDisplayed();
+                System.out.println("Main isDisplayed(): " + mainDisplayed);
+                
+                String mainClass = mainContent.getAttribute("class");
+                System.out.println("Main class: " + mainClass);
+            } catch (Exception e) {
+                System.out.println("Main element NOT FOUND: " + e.getMessage());
+            }
+            
+            boolean headerVisible = isElementDisplayed(headerSection);
+            boolean contentVisible = isElementDisplayed(mainContent);
+            
+            System.out.println("Final result - Header visible: " + headerVisible);
+            System.out.println("Final result - Main content visible: " + contentVisible);
+            
+            return headerVisible && contentVisible;
+        } catch (Exception e) {
+            System.out.println("ERROR in areMainElementsVisible: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
     
     /**
