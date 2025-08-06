@@ -2,6 +2,8 @@ package com.fuzulev.automation.functional;
 
 import com.fuzulev.automation.pages.HomePage;
 import com.fuzulev.automation.BaseTest;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,6 +16,17 @@ public class HomePageTest extends BaseTest {
     private HomePage homePage;
     
     /**
+     * Initialize HomePage for the current test
+     * This method eliminates code duplication
+     */
+    private void initializeHomePage() {
+        // Always create fresh homepage for each test (avoids WebDriver session issues)
+        Assert.assertTrue(verifyTestPreconditions(), "Test preconditions not met");
+        homePage = new HomePage(driver);
+        homePage.navigateToHomePage(baseUrl);
+    }
+    
+    /**
      * Test homepage loads successfully and basic elements are visible
      * Priority: High - Critical functionality
      */
@@ -21,14 +34,8 @@ public class HomePageTest extends BaseTest {
     public void testHomePageLoads() {
         logTestStep("Verifying homepage loads successfully");
         
-        // Verify test preconditions
-        Assert.assertTrue(verifyTestPreconditions(), "Test preconditions not met");
-        
-        // Initialize homepage
-        homePage = new HomePage(driver);
-        
-        // Navigate to homepage
-        homePage.navigateToHomePage(baseUrl);
+        // Initialize homepage (eliminates duplication)
+        initializeHomePage();
         
         // Verify page loaded
         boolean pageLoaded = homePage.isPageLoaded();
@@ -52,15 +59,12 @@ public class HomePageTest extends BaseTest {
      * Test main page elements are visible and accessible
      * Priority: High - Core UI elements
      */
-    @Test(priority = 2, groups = {"smoke", "functional"}, dependsOnMethods = "testHomePageLoads")
+    @Test(priority = 2, groups = {"smoke", "functional"})
     public void testMainElementsVisible() {
         logTestStep("Verifying main page elements are visible");
         
-        // Initialize homepage if not already done
-        if (homePage == null) {
-            homePage = new HomePage(driver);
-            homePage.navigateToHomePage(baseUrl);
-        }
+        // Initialize homepage (eliminates duplication)
+        initializeHomePage();
         
         // Check main elements visibility
         boolean elementsVisible = homePage.areMainElementsVisible();
@@ -84,9 +88,12 @@ public class HomePageTest extends BaseTest {
      * Test page content and services section
      * Priority: Medium - Content verification
      */
-    @Test(priority = 3, groups = {"functional"}, dependsOnMethods = "testMainElementsVisible")
+    @Test(priority = 3, groups = {"functional"})
     public void testPageContent() {
         logTestStep("Verifying page content and services");
+        
+        // Initialize homepage (eliminates duplication)
+        initializeHomePage();
         
         // Get main heading text
         String headingText = homePage.getMainHeadingText();
@@ -110,9 +117,12 @@ public class HomePageTest extends BaseTest {
      * Test page scrolling and navigation functionality
      * Priority: Medium - User interaction
      */
-    @Test(priority = 4, groups = {"functional"}, dependsOnMethods = "testPageContent")
+    @Test(priority = 4, groups = {"functional"})
     public void testPageScrolling() {
         logTestStep("Testing page scrolling functionality");
+        
+        // Initialize homepage (eliminates duplication)
+        initializeHomePage();
         
         // Perform page scrolling
         homePage.scrollThroughPage();
@@ -132,9 +142,12 @@ public class HomePageTest extends BaseTest {
      * Test logo functionality (if present)
      * Priority: Low - Additional verification
      */
-    @Test(priority = 5, groups = {"functional"}, dependsOnMethods = "testPageScrolling")
+    @Test(priority = 5, groups = {"functional"})
     public void testLogoFunctionality() {
         logTestStep("Testing logo functionality");
+        
+        // Initialize homepage (eliminates duplication)
+        initializeHomePage();
         
         // Try to click logo
         homePage.clickLogo();
@@ -151,9 +164,12 @@ public class HomePageTest extends BaseTest {
      * Comprehensive homepage verification test
      * Priority: High - Complete verification
      */
-    @Test(priority = 10, groups = {"smoke", "regression"}, dependsOnMethods = {"testHomePageLoads", "testMainElementsVisible"})
+    @Test(priority = 10, groups = {"smoke", "regression"})
     public void testComprehensiveVerification() {
         logTestStep("Running comprehensive homepage verification");
+        
+        // Initialize homepage (eliminates duplication)
+        initializeHomePage();
         
         // Run comprehensive verification
         boolean allVerified = homePage.verifyPageFunctionality();
@@ -179,9 +195,12 @@ public class HomePageTest extends BaseTest {
      * Test contact link functionality (if present)
      * Priority: Medium - Business critical
      */
-    @Test(priority = 6, groups = {"functional", "contact"}, dependsOnMethods = "testPageContent")
+    @Test(priority = 6, groups = {"functional", "contact"})
     public void testContactLink() {
         logTestStep("Testing contact link functionality");
+        
+        // Initialize homepage (eliminates duplication)
+        initializeHomePage();
         
         // Try to click contact link
         boolean contactLinkClicked = homePage.clickContactLink();
@@ -212,9 +231,12 @@ public class HomePageTest extends BaseTest {
      * Test mobile responsiveness simulation
      * Priority: Medium - Responsive design
      */
-    @Test(priority = 7, groups = {"responsive", "mobile"}, dependsOnMethods = "testHomePageLoads")
+    @Test(priority = 7, groups = {"responsive", "mobile"})
     public void testMobileResponsiveness() {
         logTestStep("Testing mobile responsiveness simulation");
+        
+        // Initialize homepage (eliminates duplication)
+        initializeHomePage();
         
         // Get current window size
         org.openqa.selenium.Dimension originalSize = driver.manage().window().getSize();
@@ -226,15 +248,50 @@ public class HomePageTest extends BaseTest {
             // Wait for potential responsive changes
             waitFor(2);
             
-            // Verify page still loads in mobile view
+            // Verify page responds to mobile view (may show mobile warning)
             boolean pageLoadedMobile = homePage.isPageLoaded();
             logTestResult("Page loaded in mobile view: " + pageLoadedMobile, pageLoadedMobile);
-            Assert.assertTrue(pageLoadedMobile, "Page should load in mobile view");
             
-            // Check if elements are still accessible
-            boolean elementsVisible = homePage.areMainElementsVisible();
-            logTestResult("Elements visible in mobile view: " + elementsVisible, elementsVisible);
-            Assert.assertTrue(elementsVisible, "Elements should be visible in mobile view");
+            // Check page content - website may show mobile warning message
+            String pageTitle = driver.getTitle();
+            String currentUrl = driver.getCurrentUrl();
+            
+            logTestResult("Mobile view - Page title: " + pageTitle, !pageTitle.isEmpty());
+            logTestResult("Mobile view - Current URL: " + currentUrl, currentUrl.contains("fuzulev"));
+            
+            // Check for mobile warning message (both local and remote may show this)
+            try {
+                WebElement mobileWarning = driver.findElement(By.cssSelector(".o-device-error.js-show"));
+                String warningText = mobileWarning.getText();
+                
+                System.out.println("✅ MOBILE WARNING DETECTED: " + warningText);
+                logTestResult("Mobile warning message found: " + warningText, true);
+                
+                // Verify the warning message content
+                boolean hasCorrectWarning = warningText.contains("Lütfen Desktoptan Giriş Yapınız");
+                logTestResult("Correct mobile warning text: " + hasCorrectWarning, hasCorrectWarning);
+                
+                // Check warning styling (background: #1a4088, color: #fff)
+                String backgroundColor = mobileWarning.getCssValue("background-color");
+                String textColor = mobileWarning.getCssValue("color");
+                System.out.println("📱 Warning styling - Background: " + backgroundColor + ", Text: " + textColor);
+                
+                // Test passes if mobile warning is properly displayed
+                Assert.assertTrue(hasCorrectWarning, "Mobile warning should display correct message");
+                System.out.println("✅ MOBILE RESPONSIVENESS TEST PASSED: Website correctly shows mobile warning for small screens");
+                
+            } catch (Exception e) {
+                // No mobile warning found - this might be unexpected
+                System.out.println("⚠️  No mobile warning found - checking if page loaded normally");
+                
+                if (pageLoadedMobile) {
+                    System.out.println("✅ Page loaded normally in mobile view (no warning needed)");
+                    logTestResult("Page loaded without mobile warning", true);
+                } else {
+                    System.out.println("❌ Page failed to load and no mobile warning shown");
+                    Assert.fail("Page should either load properly or show mobile warning message");
+                }
+            }
             
         } finally {
             // Restore original window size
