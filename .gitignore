@@ -58,3 +58,6 @@ node_modules/
 # Environment specific
 config/local.properties
 .env
+
+# Internal Planning Documents (not for public repo)
+todos/
